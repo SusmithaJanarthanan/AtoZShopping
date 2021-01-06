@@ -156,6 +156,9 @@
     <Compile Include="Models\Retailer.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_Pdts_Of_One_Category_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Update_Products.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>

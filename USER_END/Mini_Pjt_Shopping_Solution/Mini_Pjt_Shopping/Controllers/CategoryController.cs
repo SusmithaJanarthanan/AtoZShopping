@@ -30,10 +30,10 @@ namespace Mini_Pjt_Shopping.Controllers
         public HttpResponseMessage GetAllProductsofOneCategory(int id)
         {
             List<Product> pdts = new List<Product>();
-            var res = entities.GetOneCategory(id).ToList();
+            var res = entities.sp_Pdts_Of_One_Category(id).ToList();
             foreach (var item in res.ToList())
             {
-                pdts.Add(new Product { Prod_Id = item.Prod_Id, Prod_Name = item.Prod_Name,  Prod_Quantity = item.Prod_Quantity, Prod_Description = item.Prod_Description, Prod_Image = item.Prod_Image });
+                pdts.Add(new Product { Prod_Id = item.Prod_Id, Prod_Name = item.Prod_Name,Prod_Quantity = item.Prod_Quantity, Prod_Description = item.Prod_Description, Prod_Image = item.Prod_Image,Prod_Price=item.Prod_Price, Prod_Status=item.Prod_Status, Category_Name=item.Category_Name, Retail_Name=item.Retail_Name });
             }
             return Request.CreateResponse(HttpStatusCode.OK, pdts);
         }

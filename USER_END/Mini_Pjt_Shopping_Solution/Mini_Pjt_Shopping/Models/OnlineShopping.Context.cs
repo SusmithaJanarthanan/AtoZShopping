@@ -63,5 +63,14 @@ namespace Mini_Pjt_Shopping.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetOneCategory_Result>("GetOneCategory", catidParameter);
         }
+    
+        public virtual ObjectResult<sp_Pdts_Of_One_Category_Result> sp_Pdts_Of_One_Category(Nullable<int> cat_id)
+        {
+            var cat_idParameter = cat_id.HasValue ?
+                new ObjectParameter("cat_id", cat_id) :
+                new ObjectParameter("cat_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Pdts_Of_One_Category_Result>("sp_Pdts_Of_One_Category", cat_idParameter);
+        }
     }
 }

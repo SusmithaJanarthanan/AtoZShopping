@@ -142,5 +142,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Pdts_Of_One_Category" FunctionName="MiniProject_ShopModel.Store.sp_Pdts_Of_One_Category">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_Pdts_Of_One_Category_Result">
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+          <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+          <ScalarProperty Name="Prod_Status" ColumnName="Prod_Status" />
+          <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+          <ScalarProperty Name="Retail_Name" ColumnName="Retail_Name" />
+          <ScalarProperty Name="row_num" ColumnName="row_num" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
