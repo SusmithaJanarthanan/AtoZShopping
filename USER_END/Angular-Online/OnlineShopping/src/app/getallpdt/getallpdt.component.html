@@ -1,0 +1,30 @@
+<div>
+  <label> Sort</label>
+  <br>
+  <select [(ngModel)]='SortbyParam' >
+    <option hidden value="" disabled selected>Select one category </option>
+    <option value="Prod_Name" >Sort By Name</option>
+    <option value="Prod_Price">Sort By Price</option>
+  </select>
+
+  <select [(ngModel)]='SortOrder' >
+    <option value="asc" >Sort Ascending</option>
+    <option value="desc">Sort Descending</option>
+  </select>
+
+  <button (click)='onclear()'>Clear</button>
+</div>
+
+
+
+<div *ngIf="products">
+<div *ngFor="let item of products|sort:[SortbyParam,SortOrder]">
+  Name:{{item.Prod_Name}}
+ <br>
+ Price:{{item.Prod_Price}}
+ <br>
+ <button (click)="showDetails(item.Prod_Id)" class="btn btn-primary">View Product</button>
+ <hr>
+</div>
+</div>
+

@@ -1,0 +1,29 @@
+<header>
+  <h2><span class="brand-logo"><a routerLink="Home" style="text-decoration: none;">Shopping</a></span>
+    <!-- <label for="menu-toggle"><span class="ti-menu"></span></label></h2> -->
+    </h2>
+  <input type="checkbox" id="menu-toggle" />
+  <div class="main-menu">
+    <div class="menu-responsive">
+      <label for="menu-toggle">Close</label>
+      <form action="" class="search">
+        <input type="search" placeholder="search store" />
+        <button><span class="span ti-search"></span></button>
+      </form>
+    </div>
+
+    <a href="">Sign up / Login</a>
+  </div>
+</header>
+
+  <div style="padding: 10px;">
+    <ul >
+      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Home">Home</a></li>
+      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Products">Products</a></li>
+      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Home">Cart</a></li>
+      <li  style="display: inline;padding:10px;"><a  class="linki" style="text-decoration: none;" routerLink="Home">Wishlist</a></li>
+      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Home">Compare</a></li>
+      <li  style="display: inline;padding:10px;"><app-navbar></app-navbar></li>
+    </ul>
+    </div>
+<router-outlet></router-outlet>

@@ -1,0 +1,72 @@
+
+<style>
+  .dropbtn {
+     background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+
+   .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+     background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {background-color: #ddd;}
+
+  .dropdown:hover .dropdown-content {display: block;}
+
+  .dropdown:hover .dropbtn
+  {background-color: #3e8e41;}
+
+  /* button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  /* font-family: arial, sans-serif; */
+  /*input has OS specific font-family*/
+  /* color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+} */
+  </style>
+
+
+
+<!-- <div style="background-color: aliceblue;padding: 40px;">
+  <li  *ngFor="let item of Category" style="display: inline;">
+  <button class="btn btn-primary" style="margin: 10px;"
+  (click)="showDetails1(item.Category_Id)">{{item.Category_Name}}</button>
+</li>
+  &nbsp;
+</div> -->
+
+<div class="dropdown">
+  <button class="dropbtn" >All Categories</button>
+  <div class="dropdown-content" >
+    <li  *ngFor="let item of Category" style="display: inline;">
+    <button class="btn btn-primary" style="margin: 10px;"
+    (click)="showDetails1(item.Category_Id)">{{item.Category_Name}}</button>
+    </li>
+  </div>
+</div>
+
+
