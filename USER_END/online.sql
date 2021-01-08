@@ -164,11 +164,7 @@ exec GetOneCategory 3
 
 
 
-create procedure GetAllCategory
-as
-begin
-select * from Category 
-end
+
 
 
 
@@ -183,44 +179,92 @@ end
 	insert into Products(Category_Id,Prod_Name,Prod_Price,Prod_Image,Prod_Description,Prod_Quantity,Prod_Status,Retail_Id)
 values(3,'Samsung',5050,'img1','make your world brighter','10','approved',1009)
 
-
-
-select * 
-    from (
-         select i, p, o, 
-                row_number() over (partition by p order by o) as row_num
-            from qt
-        )
-    where row_num = 1
+select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,c.Category_Id,
+c.Category_Name,r.Retail_Name,r.Retail_Id,r.Company_Name from Products p inner join Category c 
+on p.Category_Id=c.Category_Id inner join Retailers r
+on p.Retail_Id=r.Retail_Id
 
 
 
-select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Name,Retail_Name,
+
+
+select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Id,Category_Name,Retail_Id,Retail_Name,Company_Name,
 row_number() over (partition by Prod_Name order by Prod_Id) as row_num
 from 
-(select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,
-c.Category_Name,r.Retail_Name from Products p inner join Category c 
+(select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,c.Category_Id,
+c.Category_Name,r.Retail_Name,r.Retail_Id,r.Company_Name from Products p inner join Category c 
 on p.Category_Id=c.Category_Id inner join Retailers r
 on p.Retail_Id=r.Retail_Id) cd
 
-select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,
-c.Category_Name,r.Retail_Name from Products p inner join Category c 
-on p.Category_Id=c.Category_Id inner join Retailers r
-on p.Retail_Id=r.Retail_Id
-where c.Category_Id=3
-order by p.Prod_Price
 
-create procedure sp_Pdts_Of_One_Category @cat_id int
+------------------------------------------------------------------
+alter procedure sp_GetOnePdt @id int
 as
 begin
-select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Name,Retail_Name,
-row_number() over (partition by Prod_Name order by Prod_Price,Prod_Id) as row_num
+select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Id,Category_Name,Retail_Id,Retail_Name,Company_Name,
+row_number() over (partition by Prod_Name order by Prod_Id) as row_num
 from 
-(select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,
-c.Category_Name,r.Retail_Name from Products p inner join Category c 
+(select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,c.Category_Id,
+c.Category_Name,r.Retail_Name,r.Retail_Id,r.Company_Name from Products p inner join Category c 
+on p.Category_Id=c.Category_Id inner join Retailers r
+on p.Retail_Id=r.Retail_Id
+where p.Prod_Id=@id
+)cd
+end
+
+exec sp_GetOnePdt 115
+exec sp_GetOnePdt 101
+----------------------------------------------------------
+alter procedure sp_GetAllPdt
+as
+begin
+select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Id,Category_Name,Retail_Id,Retail_Name,Company_Name,
+row_number() over (partition by Prod_Name order by Prod_Id) as row_num
+from 
+(select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,c.Category_Id,
+c.Category_Name,r.Retail_Name,r.Retail_Id,r.Company_Name from Products p inner join Category c 
+on p.Category_Id=c.Category_Id inner join Retailers r
+on p.Retail_Id=r.Retail_Id) cd
+end
+exec sp_GetAllPdt
+----------------------------------------------------------------------
+create procedure GetAllCategory
+as
+begin
+select * from Category 
+end
+exec GetAllCategory
+--------------------------------------------------------------------
+alter procedure sp_Pdts_Of_One_Category @cat_id int
+as
+begin
+select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Id,Category_Name,Retail_Id,Retail_Name,Company_Name,
+row_number() over (partition by Prod_Name order by Prod_Id) as row_num
+from 
+(select p.Prod_Id,p.Prod_Name,p.Prod_Image,p.Prod_Price,p.Prod_Description,p.Prod_Status,p.Prod_Quantity,c.Category_Id,
+c.Category_Name,r.Retail_Name,r.Retail_Id,r.Company_Name from Products p inner join Category c 
 on p.Category_Id=c.Category_Id inner join Retailers r
 on p.Retail_Id=r.Retail_Id
 where c.Category_Id= @cat_id) as cd
 end
 
 exec sp_Pdts_Of_One_Category 3
+exec sp_Pdts_Of_One_Category 2
+
+---------------------------------------------------------------------
+
+
+
+
+
+
+drop procedure sp_GetAllProducts
+
+exec sp_GetAllPdt
+
+
+
+
+
+
+

@@ -211,15 +211,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="GetAllCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="GetAllPdts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="GetCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="catname" Type="varchar" Mode="In" />
+        <Function Name="AddTOCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="prodid" Type="int" Mode="In" />
+          <Parameter Name="prod_qty" Type="int" Mode="In" />
+          <Parameter Name="prod_price" Type="decimal" Mode="In" />
         </Function>
-        <Function Name="GetOneCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="catid" Type="int" Mode="In" />
+        <Function Name="AddToWishlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="prodid" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_Pdts_Of_One_Category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="GetCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWishItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prodid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWishlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetAllCategoryfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAllPdtfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetOnePdtfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_PdtsOfOneCategoryfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cat_id" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="MiniProject_ShopModelStoreContainer">
@@ -560,7 +576,40 @@
           <Parameter Name="catid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Pdts_Of_One_Category" ReturnType="Collection(MiniProject_ShopModel.sp_Pdts_Of_One_Category_Result)">
-            <Parameter Name="cat_id" Mode="In" Type="Int32" />
+          <Parameter Name="cat_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAllProducts" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllProducts_Result)" />
+          <FunctionImport Name="sp_GetAllProducts1" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllProducts1_Result)" />
+          <FunctionImport Name="sp_GetAllPdt" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdt_Result)" />
+          <FunctionImport Name="sp_GetOnePdt" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdt_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAllCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result)" />
+          <FunctionImport Name="sp_GetAllPdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdtfromdb_Result)" />
+          <FunctionImport Name="sp_GetOnePdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdtfromdb_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PdtsOfOneCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result)">
+          <Parameter Name="cat_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddTOCart">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="prodid" Mode="In" Type="Int32" />
+            <Parameter Name="prod_qty" Mode="In" Type="Int32" />
+            <Parameter Name="prod_price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="AddToWishlist">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="prodid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetWishItem" ReturnType="Collection(MiniProject_ShopModel.GetWishItem_Result)">
+          <Parameter Name="prodid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetWishlist" ReturnType="Collection(MiniProject_ShopModel.GetWishlist_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCart" ReturnType="Collection(MiniProject_ShopModel.GetCart_Result)">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetAllPdts_Result">
@@ -605,6 +654,125 @@
           <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
           <Property Type="Int64" Name="row_num" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllProducts_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllProducts1_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+          <Property Type="Int64" Name="row_num" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllPdt_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+          <Property Type="Int64" Name="row_num" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetOnePdt_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+          <Property Type="Int64" Name="row_num" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllCategoryfromdb_Result">
+          <Property Type="Int32" Name="Category_Id" Nullable="false" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAllPdtfromdb_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Category_Id" Nullable="false" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Retail_Id" Nullable="false" />
+          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
+          <Property Type="Int64" Name="row_num" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GetOnePdtfromdb_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Category_Id" Nullable="false" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Retail_Id" Nullable="false" />
+          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
+          <Property Type="Int64" Name="row_num" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_PdtsOfOneCategoryfromdb_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Category_Id" Nullable="false" />
+          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="Retail_Id" Nullable="false" />
+          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
+          <Property Type="Int64" Name="row_num" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetWishItem_Result">
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="Int32" Name="Category_Id" Nullable="true" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Retail_Id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetWishlist_Result">
+          <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
+          <Property Type="Int32" Name="User_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCart_Result">
+          <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+          <Property Type="Int32" Name="User_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -706,9 +874,76 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetAllPdts" FunctionName="MiniProject_ShopModel.Store.GetAllPdts">
+          <FunctionImportMapping FunctionImportName="sp_GetAllCategoryfromdb" FunctionName="MiniProject_ShopModel.Store.sp_GetAllCategoryfromdb">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetAllPdts_Result">
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result">
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetAllPdtfromdb" FunctionName="MiniProject_ShopModel.Store.sp_GetAllPdtfromdb">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_GetAllPdtfromdb_Result">
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+                <ScalarProperty Name="Prod_Status" ColumnName="Prod_Status" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Retail_Id" ColumnName="Retail_Id" />
+                <ScalarProperty Name="Retail_Name" ColumnName="Retail_Name" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="row_num" ColumnName="row_num" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetOnePdtfromdb" FunctionName="MiniProject_ShopModel.Store.sp_GetOnePdtfromdb">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_GetOnePdtfromdb_Result">
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+                <ScalarProperty Name="Prod_Status" ColumnName="Prod_Status" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Retail_Id" ColumnName="Retail_Id" />
+                <ScalarProperty Name="Retail_Name" ColumnName="Retail_Name" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="row_num" ColumnName="row_num" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_PdtsOfOneCategoryfromdb" FunctionName="MiniProject_ShopModel.Store.sp_PdtsOfOneCategoryfromdb">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result">
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+                <ScalarProperty Name="Prod_Status" ColumnName="Prod_Status" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Retail_Id" ColumnName="Retail_Id" />
+                <ScalarProperty Name="Retail_Name" ColumnName="Retail_Name" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="row_num" ColumnName="row_num" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AddTOCart" FunctionName="MiniProject_ShopModel.Store.AddTOCart" />
+          <FunctionImportMapping FunctionImportName="AddToWishlist" FunctionName="MiniProject_ShopModel.Store.AddToWishlist" />
+          <FunctionImportMapping FunctionImportName="GetWishItem" FunctionName="MiniProject_ShopModel.Store.GetWishItem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishItem_Result">
                 <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
                 <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
                 <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
@@ -721,55 +956,27 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetCategory" FunctionName="MiniProject_ShopModel.Store.GetCategory">
+          <FunctionImportMapping FunctionImportName="GetWishlist" FunctionName="MiniProject_ShopModel.Store.GetWishlist">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCategory_Result">
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishlist_Result">
+                <ScalarProperty Name="Wishlist_Id" ColumnName="Wishlist_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
-                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
-                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
-                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCart" FunctionName="MiniProject_ShopModel.Store.GetCart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCart_Result">
+                <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
                 <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
-                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllCategory" FunctionName="MiniProject_ShopModel.Store.GetAllCategory">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetAllCategory_Result">
-                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
-                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetOneCategory" FunctionName="MiniProject_ShopModel.Store.GetOneCategory">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetOneCategory_Result">
-                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
-                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
-                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
-                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
-                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
-                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Pdts_Of_One_Category" FunctionName="MiniProject_ShopModel.Store.sp_Pdts_Of_One_Category">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_Pdts_Of_One_Category_Result">
-                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
-                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
-                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
                 <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
-                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
-                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
-                <ScalarProperty Name="Prod_Status" ColumnName="Prod_Status" />
-                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
-                <ScalarProperty Name="Retail_Name" ColumnName="Retail_Name" />
-                <ScalarProperty Name="row_num" ColumnName="row_num" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

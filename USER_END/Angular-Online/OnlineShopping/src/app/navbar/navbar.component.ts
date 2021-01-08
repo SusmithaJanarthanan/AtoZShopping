@@ -10,6 +10,7 @@ import { PdtService } from '../services/pdts.service';
 export class NavbarComponent implements OnInit {
 
 Category:any;
+selected:null;
   constructor(private pdtService:PdtService,private route:Router)
     {
       this.pdtService.getAllCategory().subscribe(data=>{

@@ -1,3 +1,4 @@
+
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -8,8 +9,8 @@ export class SortPipe implements PipeTransform {
   transform(value: Array<string>,args: any[]): any {
     const sortfield =args[0];
     const sortdirection=args[1];
+     let multiplier=0;
 
-    let multiplier=1;
 
     if(sortdirection==='desc')
     {

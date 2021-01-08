@@ -286,6 +286,39 @@
     <FunctionImport Name="sp_Pdts_Of_One_Category" ReturnType="Collection(MiniProject_ShopModel.sp_Pdts_Of_One_Category_Result)">
       <Parameter Name="cat_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_GetAllProducts" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllProducts_Result)" />
+    <FunctionImport Name="sp_GetAllProducts1" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllProducts1_Result)" />
+    <FunctionImport Name="sp_GetAllPdt" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdt_Result)" />
+    <FunctionImport Name="sp_GetOnePdt" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdt_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetAllCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result)" />
+    <FunctionImport Name="sp_GetAllPdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdtfromdb_Result)" />
+    <FunctionImport Name="sp_GetOnePdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdtfromdb_Result)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_PdtsOfOneCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result)">
+      <Parameter Name="cat_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="AddTOCart">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="prodid" Mode="In" Type="Int32" />
+      <Parameter Name="prod_qty" Mode="In" Type="Int32" />
+      <Parameter Name="prod_price" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="AddToWishlist">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="prodid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetWishItem" ReturnType="Collection(MiniProject_ShopModel.GetWishItem_Result)">
+      <Parameter Name="prodid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetWishlist" ReturnType="Collection(MiniProject_ShopModel.GetWishlist_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetCart" ReturnType="Collection(MiniProject_ShopModel.GetCart_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetAllPdts_Result">
     <Property Type="Int32" Name="Prod_Id" Nullable="false" />
@@ -329,5 +362,124 @@
     <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
     <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllProducts_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllProducts1_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+    <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllPdt_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+    <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetOnePdt_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+    <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllCategoryfromdb_Result">
+    <Property Type="Int32" Name="Category_Id" Nullable="false" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="sp_GetAllPdtfromdb_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Category_Id" Nullable="false" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Retail_Id" Nullable="false" />
+    <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
+    <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_GetOnePdtfromdb_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Category_Id" Nullable="false" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Retail_Id" Nullable="false" />
+    <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
+    <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_PdtsOfOneCategoryfromdb_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Category_Id" Nullable="false" />
+    <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Retail_Id" Nullable="false" />
+    <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
+    <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetWishItem_Result">
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="Int32" Name="Category_Id" Nullable="true" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
+    <Property Type="Int32" Name="Retail_Id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetWishlist_Result">
+    <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
+    <Property Type="Int32" Name="User_Id" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetCart_Result">
+    <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+    <Property Type="Int32" Name="User_Id" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
   </ComplexType>
 </Schema>

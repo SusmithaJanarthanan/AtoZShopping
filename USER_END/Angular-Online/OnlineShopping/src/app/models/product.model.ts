@@ -6,9 +6,8 @@ export class Products
   image:any;
   description:string;
   quantity:number;
-  Retailer_name:string;
 
-  constructor(Prod_Id:number=0,name:string="",price:number=0,image:any,description:string="",quantity:number=0,Retailer_name="")
+  constructor(Prod_Id:number=0,name:string="",price:number=0,image:any,description:string="",quantity:number=0)
   {
     this.Prod_Id=Prod_Id;
     this.name=name;
@@ -16,6 +15,5 @@ export class Products
     this.image=image;
     this.description=description;
     this.quantity=quantity;
-    this.Retailer_name=Retailer_name;
   }
 }

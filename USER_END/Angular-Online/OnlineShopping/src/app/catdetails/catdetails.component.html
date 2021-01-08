@@ -1,3 +1,100 @@
+<div id="viewport">
+  <!-- Sidebar -->
+<div id="sidebar">
+<ul class="nav">
+  <div class="nav1">
+    <div class="data-nav" style="padding-left: 15px;padding-top: 10px;">
+        <label  class="nav1"> Sort</label>
+        <br>
+        <select [(ngModel)]='SortbyParam' >
+          <option hidden value="" disabled selected>Select one category </option>
+          <option value="Prod_Name" >Sort By Name</option>
+          <br>
+          <option value="Prod_Price">Sort By Price</option>
+        </select>
+    </div>
+    <div class="data-nav" style="padding-left: 15px;padding-top: 10px;">
+        <select [(ngModel)]='SortOrder' >
+          <option value="asc" >Sort Ascending</option>
+          <br>
+          <option value="desc">Sort Descending</option>
+        </select>
+       <br>
+       <br>
+        <button class="btn btn-primary" (click)='onclear()'>Clear</button>
+    </div>
+    <div style="padding-left: 15px;padding-top: 10px;">
+      <p>
+      Minimum value
+      <input type="number" [(ngModel)]="Min" />
+      </p>
+      <p>
+        Maximum value
+      <input type="number" [(ngModel)]="Max" />
+      </p>
+      <button class="btn btn-primary" (click)="FilterByPrice()">  Submit</button>&nbsp;
+      <button class="btn btn-primary" (click)="FilterByPriceClear()">Clear</button>
+      </div>
+  </div>
+
+    </ul>
+  </div>
+
+  <!-- Content -->
+<div *ngIf="category">
+<div></div>
+<div class="container">
+  <h3 class="h3"> </h3>
+  <div class="row">
+    <div class="id" *ngIf="( category| filter:[min,max] |sort:[SortbyParam,SortOrder] )as result">
+      <div class="col-md-3 col-sm-6" *ngFor="let item of result">
+     <!-- {{result.length}} -->
+          <div class="product-grid2" [ngClass]="{imgClass:item.Prod_Status==='pending'}">
+            <div class="product-image2">
+                <a [ngClass]="{imgClass:item.Prod_Status==='pending'}" role="button"  (click)="(item.Prod_Status==='pending')?'':showDetails(item.Prod_Id)">
+                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
+                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
+                </a>
+                <ul class="social">
+                    <li><a  [ngClass]="{imgClass:item.Prod_Status==='pending'}" role="button"  (click)="(item.Prod_Status==='pending')?'':showDetails(item.Prod_Id)"  data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                    <li><a  [ngClass]="{imgClass:item.Prod_Status==='pending'}"   [routerLink]="item.Prod_Status==='pending' ? [] : ['/Home']"  data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                    <li><a  [ngClass]="{imgClass:item.Prod_Status==='pending'}"   [routerLink]="item.Prod_Status==='pending' ? [] : ['/Home']"  data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                </ul>
+                <a [ngClass]="{imgClass:item.Prod_Status==='pending'}" class="add-to-cart" [routerLink]="item.Prod_Status==='pending' ? [] : ['/Home']">{{item.Prod_Status==="pending"?"To Be Restocked Soon":"Add to cart"}}</a>
+              </div>
+              <div class="product-content">
+                  <h3 class="title">{{item.Prod_Name}}</h3>
+                  <span class="price">Rs {{item.Prod_Price}}</span>
+                  <br>
+                  <span class="price">{{item.Retail_Name}}</span>
+                  <br>
+                  <span class="price">{{item.Company_Name}}</span>
+                  <br>
+
+              </div>
+          </div>
+
+      </div>
+      <div *ngIf="result.length === 0">
+        <div class="error-404" style="margin-left:250px">
+          <div class="error-code m-b-10 m-t-20"> <i class="fa fa-warning"></i></div>
+          <h2 class="font-bold">Oops!No Products Found</h2>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    </div>  </div>
+
+
+
+
+
+
+
+
+
+<!--
 <div>
   <label> Sort</label>
   <br>
@@ -21,10 +118,13 @@
   Retailer Name:{{item.Retail_Name}}
  <br>
  Price:{{item.Prod_Price}}
+<br>
+Category:{{item.Category_Name}}
+
 
  <button (click)="showDetails(item.Prod_Id)" class="btn btn-primary">View Product</button>
  <hr>
- </div>
+ </div> -->
 
 
 

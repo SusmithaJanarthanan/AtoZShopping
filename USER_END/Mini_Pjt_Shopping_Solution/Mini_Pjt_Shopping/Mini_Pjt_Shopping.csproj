@@ -109,8 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -126,10 +128,19 @@
     <Compile Include="Models\GetAllPdts_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetCart_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetCategory_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetOneCategory_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetWishItem_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetWishlist_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OnlineShopping.Context.cs">
@@ -154,6 +165,30 @@
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Retailer.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllCategoryfromdb_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllPdtfromdb_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllPdt_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllProducts1_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAllProducts_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetOnePdtfromdb_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetOnePdt_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_PdtsOfOneCategoryfromdb_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_Pdts_Of_One_Category_Result.cs">

@@ -8,13 +8,18 @@ import { PdtService } from '../services/pdts.service';
   styleUrls: ['./catdetails.component.css']
 })
 export class CatdetailsComponent implements OnInit,OnDestroy
- {
+{
+id?: any;
+category:any;
+private sub:any;
 
-  id?: any;
-  category:any;
-  private sub:any;
+min="";
+max="";
 SortbyParam=" ";
 SortOrder=" ";
+msg:any;
+Min="";
+Max="";
 
   constructor(private myRoute:ActivatedRoute,private ProductService:PdtService,private route:Router)
   {
@@ -24,8 +29,7 @@ SortOrder=" ";
     // subscribe(data=>this.category=data)
   }
   ngOnInit() {
-
-    this.sub=this.myRoute.params.subscribe(params=>{
+      this.sub=this.myRoute.params.subscribe(params=>{
       this.id=+params['id'];
       console.log("Id given is "+this.id);
       this.ProductService.getPdtOfOneCategory(this.id).
@@ -42,10 +46,26 @@ SortOrder=" ";
   console.log("Product chosen"+id);
   this.route.navigate(["Details",id])
   }
-  onclear()
+  FilterByPrice()
 {
-
+  // console.log(this.Min);
+  // console.log(this.Max);
+  this.min=this.Min;
+  this.max=this.Max;
+  // console.log(this.min);
+  // console.log(this.max);
+}
+onclear()
+{
 this.SortbyParam=" ";
 this.SortOrder=" ";
 }
+FilterByPriceClear()
+{
+  this.Min='';
+  this.Max=''
+  this.min='';
+  this.max='';
+}
+
 }

@@ -13,6 +13,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CatdetailsComponent } from './catdetails/catdetails.component';
 import { SortPipe } from './sort.pipe';
 import { HomeComponent } from './home/home.component';
+import { FilterPipe } from './filter.pipe';
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { UserregisterComponent } from './userregister/userregister.component';
+import { CartComponent } from './cart/cart.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { WishService } from './services/wish.service';
+import { CartService } from './services/cart.service';
+
+
 
 
 @NgModule({
@@ -24,15 +33,19 @@ import { HomeComponent } from './home/home.component';
     CatdetailsComponent,
     SortPipe,
     HomeComponent,
-
-  ],
+    FilterPipe,
+    UserregisterComponent,
+    CartComponent,
+    WishlistComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxImageZoomModule
   ],
-  providers: [PdtService],
+  providers: [PdtService,WishService,CartService],
   bootstrap: [AppComponent]
 })
 

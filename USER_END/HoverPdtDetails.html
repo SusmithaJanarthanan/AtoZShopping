@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="font-awesome.css">
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="style.css">
+<title>Product Cart</title>
+</head>
+<body>
+<div class="container">
+<div class="image-container">
+<div class="big-image">
+    <img src="1.jpg" alt="">
+</div>
+<div class="small-image">
+    <img src="pic.jpg" alt="">
+    <img src="1.jpg" alt="">
+    <img src="pic.jpg" alt="">
+</div>
+</div>
+
+<div class="content">
+    <h1>
+        Womens's Clothing
+    </h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nesciunt, eligendi reiciendis ratione 
+        deserunt explicabo quasi inventore animi velit cupiditate iusto, veritatis 
+        autem, a beatae sed aliquid unde omnis amet.
+    </p>
+ <div class="price">Rs.1000</div>
+ <a href=""><button>Add to cart</button></a>
+
+</div>
+</div>
+<!-- 
+script part -->
+<script src="jquery.js"></script>
+<script>
+   $(document).ready(function(){
+   $('.small-image img').click(function(){
+   var image=$(this).attr('src');
+   $('.big-image img').attr('src',image);   
+   });
+   
+   });
+</script>
+
+</body>
+</html>
+
+
+ 

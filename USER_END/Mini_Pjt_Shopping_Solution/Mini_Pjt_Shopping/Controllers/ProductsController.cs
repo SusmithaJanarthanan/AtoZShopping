@@ -14,22 +14,30 @@ namespace Mini_Pjt_Shopping.Controllers
     {
         MiniProject_ShopEntities entities = new MiniProject_ShopEntities();
 
+        public object Retail_Name { get; private set; }
+        public object Category_Name { get; private set; }
+
         [HttpGet]
         public HttpResponseMessage GetAllProducts()
         {
             List<Product> pdts = new List<Product>();
-            var res = entities.GetAllPdts().ToList();
+            var res = entities.sp_GetAllPdtfromdb().ToList();
             foreach (var item in res.ToList())
             {
-                pdts.Add(new Product { Prod_Id = item.Prod_Id, Prod_Name = item.Prod_Name, Prod_Price = item.Prod_Price, Prod_Quantity = item.Prod_Quantity, Prod_Description = item.Prod_Description, Prod_Image = item.Prod_Image });
+                pdts.Add(new Product { Prod_Id = item.Prod_Id, Prod_Name = item.Prod_Name, Prod_Price = item.Prod_Price, Prod_Quantity = item.Prod_Quantity, Prod_Description = item.Prod_Description, Prod_Image = item.Prod_Image,Prod_Status=item.Prod_Status,Retail_Id=item.Retail_Id,Retail_Name=item.Retail_Name,Company_Name=item.Company_Name,Category_Id=item.Category_Id,Category_Name= item.Category_Name});
             }
             return Request.CreateResponse(HttpStatusCode.OK, pdts);
         }
 
-        public HttpResponseMessage Get(int id)
+        public HttpResponseMessage Get(int id) 
         {
-            Product pdt = entities.Products.Where(p => p.Prod_Id == id).FirstOrDefault();
-            return Request.CreateResponse(HttpStatusCode.Created, pdt);
+            List<Product> pdts = new List<Product>();
+            var res = entities.sp_GetOnePdtfromdb(id).ToList();
+            foreach (var item in res.ToList())
+            {
+                pdts.Add(new Product { Prod_Id = item.Prod_Id, Prod_Name = item.Prod_Name, Prod_Price = item.Prod_Price, Prod_Quantity = item.Prod_Quantity, Prod_Description = item.Prod_Description, Prod_Image = item.Prod_Image, Prod_Status = item.Prod_Status, Retail_Id = item.Retail_Id, Retail_Name = item.Retail_Name, Company_Name = item.Company_Name, Category_Id = item.Category_Id, Category_Name = item.Category_Name });
+            }
+            return Request.CreateResponse(HttpStatusCode.Created, res);
         }
 
 
