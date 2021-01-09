@@ -12,7 +12,7 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class CategoryController : ApiController
     {
-        MiniProject_ShopEntities entities = new MiniProject_ShopEntities();
+        MiniProject_ShopEntities1 entities = new MiniProject_ShopEntities1();
 
         [HttpGet]
         public HttpResponseMessage GetCategory()

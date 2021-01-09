@@ -11,8 +11,16 @@
         <button><span class="span ti-search"></span></button>
       </form>
     </div>
-
-    <a href="">Sign up / Login</a>
+    <div *ngIf="name==='' else elseBlock" >
+    <!-- <a  [routerLink]="name===''? ['/Login'] : ['']" >{{name===""?"Login":name}}</a>&nbsp; -->
+    <a  [routerLink]=" ['/Login']" >Login</a>&nbsp;
+    <a routerLink="SignUp">Sign up</a>
+    </div>
+    <ng-template #elseBlock>
+      <a [routerLink]="['']" >{{name}}</a>&nbsp;
+      <a href="#">Your Orders</a>
+      <a routerLink="Home" (click)="logout()">Logout</a>
+    </ng-template>
   </div>
 </header>
 
@@ -20,10 +28,16 @@
     <ul >
       <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Home">Home</a></li>
       <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Products">Products</a></li>
-      <li  style="display: inline;padding:10px;"><a [routerLink]="['Cart','2']">Cart</a></li>
-      <li  style="display: inline;padding:10px;"><a [routerLink]="['Wishlist','2']">Wishlist</a></li>
+      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" [routerLink]="['Cart','2']">Cart</a></li>
+      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" [routerLink]="['Wishlist',id]">Wishlist</a></li>
       <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Home">Compare</a></li>
       <li  style="display: inline;padding:10px;"><app-navbar></app-navbar></li>
     </ul>
     </div>
+
+
+
+
+
 <router-outlet></router-outlet>
+

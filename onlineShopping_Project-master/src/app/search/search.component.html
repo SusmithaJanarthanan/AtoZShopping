@@ -1,0 +1,21 @@
+<p>search works!</p>
+<div>
+  <input type="text" [(ngModel)]="Name"/>
+  <!-- <button class="btn btn-primary" (click)="OnSearch()">Submit</button>&nbsp; -->
+      <button class="btn btn-primary" (click)="OnClear()">Clear</button>
+</div>
+
+
+
+<div *ngIf="products">
+  <div *ngFor="let item of products|filter:Name">
+    Name:{{item.Prod_Name}}
+   <br>
+   Price:{{item.Prod_Price}}
+   <br>
+   <button (click)="showDetails(item.Prod_Id)" class="btn btn-primary">View Product</button>
+   
+  </div>
+</div>
+
+

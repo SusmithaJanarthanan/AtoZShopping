@@ -1,0 +1,10 @@
+
+<div style="background-color: aliceblue;padding: 40px;">
+  <li  *ngFor="let item of Category" style="display: inline;">
+  <button class="btn btn-primary" style="margin: 10px;"
+  (click)="showDetails1(item.Category_Id)">{{item.Category_Name}}</button>
+</li>
+  &nbsp;
+</div>
+
+

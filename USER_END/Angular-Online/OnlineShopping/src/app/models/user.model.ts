@@ -9,6 +9,7 @@ export class Users{
      User_City:string;
      User_Country:string;
 
+
     constructor(User_Id:number=0,User_Name:string="",User_Password:string="",User_Email:string="",
     User_Phone:string="",User_Address:string="",User_City:string="",User_Country:string="")
       {

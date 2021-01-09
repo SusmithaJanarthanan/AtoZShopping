@@ -1,0 +1,22 @@
+form {
+   
+    width: 300px;
+    margin: 0 auto;
+}
+.header{
+     
+    background: url('https://img4.thuthuatphanmem.vn/uploads/2019/12/09/phong-nen-powerpoint-di-dong_041235730.jpg') no-repeat center center fixed; 
+  
+   
+    min-height: 100%;
+    min-width: 1024px;
+   
+position: fixed;
+  top: 15%;
+  left: 0;
+
+
+width: 100%;
+  height: auto;
+   
+}

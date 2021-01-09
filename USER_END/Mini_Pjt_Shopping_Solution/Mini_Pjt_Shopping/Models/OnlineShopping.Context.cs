@@ -15,10 +15,10 @@ namespace Mini_Pjt_Shopping.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MiniProject_ShopEntities : DbContext
+    public partial class MiniProject_ShopEntities1 : DbContext
     {
-        public MiniProject_ShopEntities()
-            : base("name=MiniProject_ShopEntities")
+        public MiniProject_ShopEntities1()
+            : base("name=MiniProject_ShopEntities1")
         {
         }
     
@@ -35,95 +35,6 @@ namespace Mini_Pjt_Shopping.Models
         public virtual DbSet<Update_Products> Update_Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Wishlist> Wishlists { get; set; }
-    
-        public virtual ObjectResult<GetAllPdts_Result> GetAllPdts()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllPdts_Result>("GetAllPdts");
-        }
-    
-        public virtual ObjectResult<GetCategory_Result> GetCategory(string catname)
-        {
-            var catnameParameter = catname != null ?
-                new ObjectParameter("catname", catname) :
-                new ObjectParameter("catname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCategory_Result>("GetCategory", catnameParameter);
-        }
-    
-        public virtual ObjectResult<GetAllCategory_Result> GetAllCategory()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllCategory_Result>("GetAllCategory");
-        }
-    
-        public virtual ObjectResult<GetOneCategory_Result> GetOneCategory(Nullable<int> catid)
-        {
-            var catidParameter = catid.HasValue ?
-                new ObjectParameter("catid", catid) :
-                new ObjectParameter("catid", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetOneCategory_Result>("GetOneCategory", catidParameter);
-        }
-    
-        public virtual ObjectResult<sp_Pdts_Of_One_Category_Result> sp_Pdts_Of_One_Category(Nullable<int> cat_id)
-        {
-            var cat_idParameter = cat_id.HasValue ?
-                new ObjectParameter("cat_id", cat_id) :
-                new ObjectParameter("cat_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Pdts_Of_One_Category_Result>("sp_Pdts_Of_One_Category", cat_idParameter);
-        }
-    
-        public virtual ObjectResult<sp_GetAllProducts_Result> sp_GetAllProducts()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllProducts_Result>("sp_GetAllProducts");
-        }
-    
-        public virtual ObjectResult<sp_GetAllProducts1_Result> sp_GetAllProducts1()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllProducts1_Result>("sp_GetAllProducts1");
-        }
-    
-        public virtual ObjectResult<sp_GetAllPdt_Result> sp_GetAllPdt()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllPdt_Result>("sp_GetAllPdt");
-        }
-    
-        public virtual ObjectResult<sp_GetOnePdt_Result> sp_GetOnePdt(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetOnePdt_Result>("sp_GetOnePdt", idParameter);
-        }
-    
-        public virtual ObjectResult<sp_GetAllCategoryfromdb_Result> sp_GetAllCategoryfromdb()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllCategoryfromdb_Result>("sp_GetAllCategoryfromdb");
-        }
-    
-        public virtual ObjectResult<sp_GetAllPdtfromdb_Result> sp_GetAllPdtfromdb()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllPdtfromdb_Result>("sp_GetAllPdtfromdb");
-        }
-    
-        public virtual ObjectResult<sp_GetOnePdtfromdb_Result> sp_GetOnePdtfromdb(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetOnePdtfromdb_Result>("sp_GetOnePdtfromdb", idParameter);
-        }
-    
-        public virtual ObjectResult<sp_PdtsOfOneCategoryfromdb_Result> sp_PdtsOfOneCategoryfromdb(Nullable<int> cat_id)
-        {
-            var cat_idParameter = cat_id.HasValue ?
-                new ObjectParameter("cat_id", cat_id) :
-                new ObjectParameter("cat_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PdtsOfOneCategoryfromdb_Result>("sp_PdtsOfOneCategoryfromdb", cat_idParameter);
-        }
     
         public virtual int AddTOCart(Nullable<int> userid, Nullable<int> prodid, Nullable<int> prod_qty, Nullable<decimal> prod_price)
         {
@@ -159,6 +70,15 @@ namespace Mini_Pjt_Shopping.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddToWishlist", useridParameter, prodidParameter);
         }
     
+        public virtual ObjectResult<GetCart_Result> GetCart(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCart_Result>("GetCart", useridParameter);
+        }
+    
         public virtual ObjectResult<GetWishItem_Result> GetWishItem(Nullable<int> prodid)
         {
             var prodidParameter = prodid.HasValue ?
@@ -177,13 +97,41 @@ namespace Mini_Pjt_Shopping.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetWishlist_Result>("GetWishlist", useridParameter);
         }
     
-        public virtual ObjectResult<GetCart_Result> GetCart(Nullable<int> userid)
+        public virtual ObjectResult<sp_GetAllCategoryfromdb_Result> sp_GetAllCategoryfromdb()
         {
-            var useridParameter = userid.HasValue ?
-                new ObjectParameter("userid", userid) :
-                new ObjectParameter("userid", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllCategoryfromdb_Result>("sp_GetAllCategoryfromdb");
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCart_Result>("GetCart", useridParameter);
+        public virtual ObjectResult<sp_GetAllPdtfromdb_Result> sp_GetAllPdtfromdb()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllPdtfromdb_Result>("sp_GetAllPdtfromdb");
+        }
+    
+        public virtual ObjectResult<sp_GetOnePdtfromdb_Result> sp_GetOnePdtfromdb(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetOnePdtfromdb_Result>("sp_GetOnePdtfromdb", idParameter);
+        }
+    
+        public virtual int sp_ins_ord(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ins_ord", idParameter);
+        }
+    
+        public virtual ObjectResult<sp_PdtsOfOneCategoryfromdb_Result> sp_PdtsOfOneCategoryfromdb(Nullable<int> cat_id)
+        {
+            var cat_idParameter = cat_id.HasValue ?
+                new ObjectParameter("cat_id", cat_id) :
+                new ObjectParameter("cat_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PdtsOfOneCategoryfromdb_Result>("sp_PdtsOfOneCategoryfromdb", cat_idParameter);
         }
     }
 }

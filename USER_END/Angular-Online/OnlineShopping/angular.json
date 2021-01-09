@@ -30,7 +30,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["src/assets/zoomsl.min.js"]
           },
           "configurations": {
             "production": {
@@ -89,13 +89,16 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
+
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": ["node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+
+              "src/assets/zoomsl.min.js"
               ]
           }
         },

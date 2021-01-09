@@ -12,7 +12,7 @@
 <div class="container">
 <div class="image-container">
 <div class="big-image">
-    <img src="1.jpg" alt="">
+    <img src="1.jpg" alt="" id="zoom">
 </div>
 <div class="small-image">
     <img src="pic.jpg" alt="">
@@ -36,15 +36,18 @@
 </div>
 <!-- 
 script part -->
-<script src="jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script>
+
+<script src="zoomsl.min.js"></script>
+
 <script>
    $(document).ready(function(){
    $('.small-image img').click(function(){
    var image=$(this).attr('src');
    $('.big-image img').attr('src',image);   
    });
-   
-   });
+   $('#zoom').imagezoomsl()
+     });
 </script>
 
 </body>

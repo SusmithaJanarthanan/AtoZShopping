@@ -86,7 +86,7 @@
     <Property Name="User_Id" Type="int" />
     <Property Name="Prod_Id" Type="int" />
   </EntityType>
-  <Association Name="FK__Cart__Prod_Id__5FB337D6">
+  <Association Name="FK__Cart__Prod_Id__531856C7">
     <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
     <ReferentialConstraint>
@@ -98,7 +98,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Cart__User_Id__5EBF139D">
+  <Association Name="FK__Cart__User_Id__5224328E">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
     <ReferentialConstraint>
@@ -110,7 +110,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__Prod_id__6383C8BA">
+  <Association Name="FK__Orders__Prod_id__56E8E7AB">
     <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -122,7 +122,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__Retail_i__6477ECF3">
+  <Association Name="FK__Orders__Retail_i__57DD0BE4">
     <End Role="Retailers" Type="Self.Retailers" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -134,7 +134,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__User_id__628FA481">
+  <Association Name="FK__Orders__User_id__55F4C372">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -230,6 +230,9 @@
   <Function Name="sp_GetOnePdtfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_ins_ord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_PdtsOfOneCategoryfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="cat_id" Type="int" Mode="In" />
   </Function>
@@ -242,23 +245,23 @@
     <EntitySet Name="Update_Products" EntityType="Self.Update_Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Cart__Prod_Id__5FB337D6" Association="Self.FK__Cart__Prod_Id__5FB337D6">
+    <AssociationSet Name="FK__Cart__Prod_Id__531856C7" Association="Self.FK__Cart__Prod_Id__531856C7">
       <End Role="Products" EntitySet="Products" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
-    <AssociationSet Name="FK__Cart__User_Id__5EBF139D" Association="Self.FK__Cart__User_Id__5EBF139D">
+    <AssociationSet Name="FK__Cart__User_Id__5224328E" Association="Self.FK__Cart__User_Id__5224328E">
       <End Role="Users" EntitySet="Users" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__Prod_id__6383C8BA" Association="Self.FK__Orders__Prod_id__6383C8BA">
+    <AssociationSet Name="FK__Orders__Prod_id__56E8E7AB" Association="Self.FK__Orders__Prod_id__56E8E7AB">
       <End Role="Products" EntitySet="Products" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__Retail_i__6477ECF3" Association="Self.FK__Orders__Retail_i__6477ECF3">
+    <AssociationSet Name="FK__Orders__Retail_i__57DD0BE4" Association="Self.FK__Orders__Retail_i__57DD0BE4">
       <End Role="Retailers" EntitySet="Retailers" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__User_id__628FA481" Association="Self.FK__Orders__User_id__628FA481">
+    <AssociationSet Name="FK__Orders__User_id__55F4C372" Association="Self.FK__Orders__User_id__55F4C372">
       <End Role="Users" EntitySet="Users" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>

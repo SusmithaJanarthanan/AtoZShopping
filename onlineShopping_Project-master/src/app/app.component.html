@@ -1,0 +1,39 @@
+<!-- <div>
+  <a class="navbar-brand" href="#">OnlineShopping</a>
+</div>
+<breadcrumb #parent>
+  <ol class="breadcrumb">
+    <ng-template ngFor let-route [ngForOf]="parent.breadcrumbs"> -->
+      <!-- <li *ngIf="!route.terminal" class="breadcrumb-item">
+        <a href="" [routerLink]="[route.url]">{{route.displayName}}</a>
+      </li> -->
+      <!-- <li *ngIf="route.terminal" class="breadcrumb-item active">{{route.displayName}}</li>
+    </ng-template>    
+  </ol>
+</breadcrumb>
+
+
+<div style="background-color:plum;padding: 10px;">
+      <ul >
+        <li  style="display: inline;padding:10px;"><a routerLink="Home">Home</a></li>
+        <li  style="display: inline;padding:10px;"><a routerLink="Products">Products</a></li>
+        <li  style="display: inline;padding:10px;"><a routerLink="add">Cart</a></li>
+        <li  style="display: inline;padding:10px;"><a routerLink="add">Wishlist</a></li>
+        <li  style="display: inline;padding:10px;"><a routerLink="add">Compare</a></li>
+      </ul>
+</div>
+
+<app-navbar></app-navbar>
+<app-search></app-search> -->
+<!-- <app-home></app-home> -->
+
+<app-checkoutpage></app-checkoutpage>
+<router-outlet></router-outlet> 
+
+<!-- <a routerLink="orders">Orders</a> -->
+<!-- <app-checkoutpage></app-checkoutpage>
+<router-outlet></router-outlet> -->
+
+
+<!-- <app-orders></app-orders> -->
+<!-- <router-outlet></router-outlet>-->

@@ -1,0 +1,18 @@
+<p>retailer works!</p>
+<h1>Get all Authors</h1>
+<button (click)="getRetailers()">CLick here</button>
+
+    <table  class="table table-striped">
+        <tr *ngIf="retailer">
+        <th>Retailer ID</th>
+        <th>Retailer Name</th>
+        <th> Company Name</th>
+        
+    </tr>
+    <tr *ngFor="let auth of retailer">
+            <td>{{auth.Retail_Id}}</td>
+            <td> {{auth.Retail_Name}} </td>
+            <td>{{auth.Company_Name}}</td>   
+         
+    </tr>
+    </table>

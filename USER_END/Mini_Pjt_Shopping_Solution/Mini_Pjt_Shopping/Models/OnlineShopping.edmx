@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MiniProject_ShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MiniProject_ShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="Cart_Id" />
@@ -91,7 +91,7 @@
           <Property Name="User_Id" Type="int" />
           <Property Name="Prod_Id" Type="int" />
         </EntityType>
-        <Association Name="FK__Cart__Prod_Id__5FB337D6">
+        <Association Name="FK__Cart__Prod_Id__531856C7">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -103,7 +103,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cart__User_Id__5EBF139D">
+        <Association Name="FK__Cart__User_Id__5224328E">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +115,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Prod_id__6383C8BA">
+        <Association Name="FK__Orders__Prod_id__56E8E7AB">
           <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -127,7 +127,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Retail_i__6477ECF3">
+        <Association Name="FK__Orders__Retail_i__57DD0BE4">
           <End Role="Retailers" Type="Self.Retailers" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__User_id__628FA481">
+        <Association Name="FK__Orders__User_id__55F4C372">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,6 +235,9 @@
         <Function Name="sp_GetOnePdtfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_ins_ord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_PdtsOfOneCategoryfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cat_id" Type="int" Mode="In" />
         </Function>
@@ -247,23 +250,23 @@
           <EntitySet Name="Update_Products" EntityType="Self.Update_Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Cart__Prod_Id__5FB337D6" Association="Self.FK__Cart__Prod_Id__5FB337D6">
+          <AssociationSet Name="FK__Cart__Prod_Id__531856C7" Association="Self.FK__Cart__Prod_Id__531856C7">
             <End Role="Products" EntitySet="Products" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cart__User_Id__5EBF139D" Association="Self.FK__Cart__User_Id__5EBF139D">
+          <AssociationSet Name="FK__Cart__User_Id__5224328E" Association="Self.FK__Cart__User_Id__5224328E">
             <End Role="Users" EntitySet="Users" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Prod_id__6383C8BA" Association="Self.FK__Orders__Prod_id__6383C8BA">
+          <AssociationSet Name="FK__Orders__Prod_id__56E8E7AB" Association="Self.FK__Orders__Prod_id__56E8E7AB">
             <End Role="Products" EntitySet="Products" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Retail_i__6477ECF3" Association="Self.FK__Orders__Retail_i__6477ECF3">
+          <AssociationSet Name="FK__Orders__Retail_i__57DD0BE4" Association="Self.FK__Orders__Retail_i__57DD0BE4">
             <End Role="Retailers" EntitySet="Retailers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__User_id__628FA481" Association="Self.FK__Orders__User_id__628FA481">
+          <AssociationSet Name="FK__Orders__User_id__55F4C372" Association="Self.FK__Orders__User_id__55F4C372">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
@@ -288,7 +291,8 @@
             <End Role="Wishlist" EntitySet="Wishlist" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MiniProject_ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -301,8 +305,8 @@
           <Property Name="Prod_Id" Type="Int32" />
           <Property Name="Prod_Quantity" Type="Int32" />
           <Property Name="Prod_Price" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Cart__Prod_Id__5FB337D6" FromRole="Cart" ToRole="Products" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Cart__User_Id__5EBF139D" FromRole="Cart" ToRole="Users" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Cart__Prod_Id__531856C7" FromRole="Cart" ToRole="Products" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Cart__User_Id__5224328E" FromRole="Cart" ToRole="Users" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -322,9 +326,9 @@
           <Property Name="Prod_Price" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Prod_Quantity" Type="Int32" />
           <Property Name="Retail_id" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Orders__Prod_id__6383C8BA" FromRole="Orders" ToRole="Products" />
-          <NavigationProperty Name="Retailer" Relationship="Self.FK__Orders__Retail_i__6477ECF3" FromRole="Orders" ToRole="Retailers" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Orders__User_id__628FA481" FromRole="Orders" ToRole="Users" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Orders__Prod_id__56E8E7AB" FromRole="Orders" ToRole="Products" />
+          <NavigationProperty Name="Retailer" Relationship="Self.FK__Orders__Retail_i__57DD0BE4" FromRole="Orders" ToRole="Retailers" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Orders__User_id__55F4C372" FromRole="Orders" ToRole="Users" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -339,9 +343,9 @@
           <Property Name="Prod_Quantity" Type="Int32" />
           <Property Name="Prod_Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Retail_Id" Type="Int32" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__Prod_Id__5FB337D6" FromRole="Products" ToRole="Cart" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__Prod_Id__531856C7" FromRole="Products" ToRole="Cart" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Products__Catego__5165187F" FromRole="Products" ToRole="Category" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Prod_id__6383C8BA" FromRole="Products" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Prod_id__56E8E7AB" FromRole="Products" ToRole="Orders" />
           <NavigationProperty Name="Retailer" Relationship="Self.FK__Products__Retail__52593CB8" FromRole="Products" ToRole="Retailers" />
           <NavigationProperty Name="Update_Products" Relationship="Self.FK__Update_Pr__Prod___5535A963" FromRole="Products" ToRole="Update_Products" />
           <NavigationProperty Name="Wishlists" Relationship="Self.FK__Wishlist__Prod_I__5BE2A6F2" FromRole="Products" ToRole="Wishlist" />
@@ -357,7 +361,7 @@
           <Property Name="Retail_Phone" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="Retail_Email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="Retail_Status" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Retail_i__6477ECF3" FromRole="Retailers" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Retail_i__57DD0BE4" FromRole="Retailers" ToRole="Orders" />
           <NavigationProperty Name="Products" Relationship="Self.FK__Products__Retail__52593CB8" FromRole="Retailers" ToRole="Products" />
         </EntityType>
         <EntityType Name="Update_Products">
@@ -384,8 +388,8 @@
           <Property Name="User_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="User_City" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="User_Country" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__User_Id__5EBF139D" FromRole="Users" ToRole="Cart" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__User_id__628FA481" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__User_Id__5224328E" FromRole="Users" ToRole="Cart" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__User_id__55F4C372" FromRole="Users" ToRole="Orders" />
           <NavigationProperty Name="Wishlists" Relationship="Self.FK__Wishlist__User_I__5AEE82B9" FromRole="Users" ToRole="Wishlist" />
         </EntityType>
         <EntityType Name="Wishlist">
@@ -398,7 +402,7 @@
           <NavigationProperty Name="Product" Relationship="Self.FK__Wishlist__Prod_I__5BE2A6F2" FromRole="Wishlist" ToRole="Products" />
           <NavigationProperty Name="User" Relationship="Self.FK__Wishlist__User_I__5AEE82B9" FromRole="Wishlist" ToRole="Users" />
         </EntityType>
-        <Association Name="FK__Cart__Prod_Id__5FB337D6">
+        <Association Name="FK__Cart__Prod_Id__531856C7">
           <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -410,7 +414,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cart__User_Id__5EBF139D">
+        <Association Name="FK__Cart__User_Id__5224328E">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -434,7 +438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Prod_id__6383C8BA">
+        <Association Name="FK__Orders__Prod_id__56E8E7AB">
           <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -446,7 +450,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Retail_i__6477ECF3">
+        <Association Name="FK__Orders__Retail_i__57DD0BE4">
           <End Role="Retailers" Type="Self.Retailer" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -458,7 +462,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__User_id__628FA481">
+        <Association Name="FK__Orders__User_id__55F4C372">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -518,7 +522,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MiniProject_ShopEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MiniProject_ShopEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -527,11 +531,11 @@
           <EntitySet Name="Update_Products" EntityType="Self.Update_Products" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
-          <AssociationSet Name="FK__Cart__Prod_Id__5FB337D6" Association="Self.FK__Cart__Prod_Id__5FB337D6">
+          <AssociationSet Name="FK__Cart__Prod_Id__531856C7" Association="Self.FK__Cart__Prod_Id__531856C7">
             <End Role="Products" EntitySet="Products" />
             <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cart__User_Id__5EBF139D" Association="Self.FK__Cart__User_Id__5EBF139D">
+          <AssociationSet Name="FK__Cart__User_Id__5224328E" Association="Self.FK__Cart__User_Id__5224328E">
             <End Role="Users" EntitySet="Users" />
             <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
@@ -539,15 +543,15 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Prod_id__6383C8BA" Association="Self.FK__Orders__Prod_id__6383C8BA">
+          <AssociationSet Name="FK__Orders__Prod_id__56E8E7AB" Association="Self.FK__Orders__Prod_id__56E8E7AB">
             <End Role="Products" EntitySet="Products" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Retail_i__6477ECF3" Association="Self.FK__Orders__Retail_i__6477ECF3">
+          <AssociationSet Name="FK__Orders__Retail_i__57DD0BE4" Association="Self.FK__Orders__Retail_i__57DD0BE4">
             <End Role="Retailers" EntitySet="Retailers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__User_id__628FA481" Association="Self.FK__Orders__User_id__628FA481">
+          <AssociationSet Name="FK__Orders__User_id__55F4C372" Association="Self.FK__Orders__User_id__55F4C372">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
@@ -567,31 +571,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Wishlist" EntitySet="Wishlists" />
           </AssociationSet>
-          <FunctionImport Name="GetAllPdts" ReturnType="Collection(MiniProject_ShopModel.GetAllPdts_Result)" />
-          <FunctionImport Name="GetCategory" ReturnType="Collection(MiniProject_ShopModel.GetCategory_Result)">
-          <Parameter Name="catname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="GetAllCategory" ReturnType="Collection(MiniProject_ShopModel.GetAllCategory_Result)" />
-          <FunctionImport Name="GetOneCategory" ReturnType="Collection(MiniProject_ShopModel.GetOneCategory_Result)">
-          <Parameter Name="catid" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Pdts_Of_One_Category" ReturnType="Collection(MiniProject_ShopModel.sp_Pdts_Of_One_Category_Result)">
-          <Parameter Name="cat_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_GetAllProducts" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllProducts_Result)" />
-          <FunctionImport Name="sp_GetAllProducts1" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllProducts1_Result)" />
-          <FunctionImport Name="sp_GetAllPdt" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdt_Result)" />
-          <FunctionImport Name="sp_GetOnePdt" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdt_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_GetAllCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result)" />
-          <FunctionImport Name="sp_GetAllPdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdtfromdb_Result)" />
-          <FunctionImport Name="sp_GetOnePdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdtfromdb_Result)">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_PdtsOfOneCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result)">
-          <Parameter Name="cat_id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="AddTOCart">
             <Parameter Name="userid" Mode="In" Type="Int32" />
             <Parameter Name="prodid" Mode="In" Type="Int32" />
@@ -602,17 +581,35 @@
             <Parameter Name="userid" Mode="In" Type="Int32" />
             <Parameter Name="prodid" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetWishItem" ReturnType="Collection(MiniProject_ShopModel.GetWishItem_Result)">
-          <Parameter Name="prodid" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetWishlist" ReturnType="Collection(MiniProject_ShopModel.GetWishlist_Result)">
-          <Parameter Name="userid" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetCart" ReturnType="Collection(MiniProject_ShopModel.GetCart_Result)">
             <Parameter Name="userid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="GetWishItem" ReturnType="Collection(MiniProject_ShopModel.GetWishItem_Result)">
+            <Parameter Name="prodid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetWishlist" ReturnType="Collection(MiniProject_ShopModel.GetWishlist_Result)">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetAllCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result)" />
+          <FunctionImport Name="sp_GetAllPdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdtfromdb_Result)" />
+          <FunctionImport Name="sp_GetOnePdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdtfromdb_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ins_ord">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_PdtsOfOneCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result)">
+            <Parameter Name="cat_id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="GetAllPdts_Result">
+        <ComplexType Name="GetCart_Result">
+          <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+          <Property Type="Int32" Name="User_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="GetWishItem_Result">
           <Property Type="Int32" Name="Prod_Id" Nullable="false" />
           <Property Type="Int32" Name="Category_Id" Nullable="true" />
           <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
@@ -623,84 +620,10 @@
           <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="Retail_Id" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="GetCategory_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-        </ComplexType>
-        <ComplexType Name="GetAllCategory_Result">
-          <Property Type="Int32" Name="Category_Id" Nullable="false" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-        </ComplexType>
-        <ComplexType Name="GetOneCategory_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-        </ComplexType>
-        <ComplexType Name="sp_Pdts_Of_One_Category_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
-          <Property Type="Int64" Name="row_num" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_GetAllProducts_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-        </ComplexType>
-        <ComplexType Name="sp_GetAllProducts1_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
-          <Property Type="Int64" Name="row_num" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_GetAllPdt_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
-          <Property Type="Int64" Name="row_num" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_GetOnePdt_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Category_Name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
-          <Property Type="Int64" Name="row_num" Nullable="true" />
+        <ComplexType Name="GetWishlist_Result">
+          <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
+          <Property Type="Int32" Name="User_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_GetAllCategoryfromdb_Result">
           <Property Type="Int32" Name="Category_Id" Nullable="false" />
@@ -751,35 +674,12 @@
           <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
           <Property Type="Int64" Name="row_num" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="GetWishItem_Result">
-          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
-          <Property Type="Int32" Name="Category_Id" Nullable="true" />
-          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
-          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
-          <Property Type="String" Name="Prod_Image" Nullable="true" />
-          <Property Type="String" Name="Prod_Description" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="String" Name="Prod_Status" Nullable="true" MaxLength="30" />
-          <Property Type="Int32" Name="Retail_Id" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetWishlist_Result">
-          <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
-          <Property Type="Int32" Name="User_Id" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetCart_Result">
-          <Property Type="Int32" Name="Cart_Id" Nullable="false" />
-          <Property Type="Int32" Name="User_Id" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
-          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MiniProject_ShopModelStoreContainer" CdmEntityContainer="MiniProject_ShopEntities">
+        <EntityContainerMapping StorageEntityContainer="MiniProject_ShopModelStoreContainer" CdmEntityContainer="MiniProject_ShopEntities1">
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="MiniProject_ShopModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -874,6 +774,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddTOCart" FunctionName="MiniProject_ShopModel.Store.AddTOCart" />
+          <FunctionImportMapping FunctionImportName="AddToWishlist" FunctionName="MiniProject_ShopModel.Store.AddToWishlist" />
+          <FunctionImportMapping FunctionImportName="GetCart" FunctionName="MiniProject_ShopModel.Store.GetCart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCart_Result">
+                <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWishItem" FunctionName="MiniProject_ShopModel.Store.GetWishItem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishItem_Result">
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+                <ScalarProperty Name="Prod_Status" ColumnName="Prod_Status" />
+                <ScalarProperty Name="Retail_Id" ColumnName="Retail_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetWishlist" FunctionName="MiniProject_ShopModel.Store.GetWishlist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishlist_Result">
+                <ScalarProperty Name="Wishlist_Id" ColumnName="Wishlist_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetAllCategoryfromdb" FunctionName="MiniProject_ShopModel.Store.sp_GetAllCategoryfromdb">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result">
@@ -920,6 +857,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ins_ord" FunctionName="MiniProject_ShopModel.Store.sp_ins_ord" />
           <FunctionImportMapping FunctionImportName="sp_PdtsOfOneCategoryfromdb" FunctionName="MiniProject_ShopModel.Store.sp_PdtsOfOneCategoryfromdb">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result">
@@ -939,44 +877,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AddTOCart" FunctionName="MiniProject_ShopModel.Store.AddTOCart" />
-          <FunctionImportMapping FunctionImportName="AddToWishlist" FunctionName="MiniProject_ShopModel.Store.AddToWishlist" />
-          <FunctionImportMapping FunctionImportName="GetWishItem" FunctionName="MiniProject_ShopModel.Store.GetWishItem">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishItem_Result">
-                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
-                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
-                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
-                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
-                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
-                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
-                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
-                <ScalarProperty Name="Prod_Status" ColumnName="Prod_Status" />
-                <ScalarProperty Name="Retail_Id" ColumnName="Retail_Id" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetWishlist" FunctionName="MiniProject_ShopModel.Store.GetWishlist">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishlist_Result">
-                <ScalarProperty Name="Wishlist_Id" ColumnName="Wishlist_Id" />
-                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetCart" FunctionName="MiniProject_ShopModel.Store.GetCart">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCart_Result">
-                <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
-                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
-                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
-                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
-                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

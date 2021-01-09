@@ -133,10 +133,12 @@ values(101,'Rayban',3456,50,'pending'),
 
 
 
-select * from Cart
 select * from Category
 select * from Orders
 select * from Products
+
+select * from Cart
+
 select * from Retailers
 select * from Update_Products
 select * from Users
@@ -159,6 +161,9 @@ where p.Prod_Status='approved' and p.Prod_Quantity!=0 and c.Category_Id= @catid
 end
 
 exec GetOneCategory 3
+
+
+select 
 
 
 
@@ -196,9 +201,8 @@ c.Category_Name,r.Retail_Name,r.Retail_Id,r.Company_Name from Products p inner j
 on p.Category_Id=c.Category_Id inner join Retailers r
 on p.Retail_Id=r.Retail_Id) cd
 
-
 ------------------------------------------------------------------
-alter procedure sp_GetOnePdt @id int
+create procedure sp_GetOnePdtfromdb @id int
 as
 begin
 select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Id,Category_Name,Retail_Id,Retail_Name,Company_Name,
@@ -212,10 +216,11 @@ where p.Prod_Id=@id
 )cd
 end
 
-exec sp_GetOnePdt 115
-exec sp_GetOnePdt 101
+
+exec sp_GetOnePdtfromdb 115
+exec sp_GetOnePdtfromdb 101
 ----------------------------------------------------------
-alter procedure sp_GetAllPdt
+create procedure sp_GetAllPdtfromdb
 as
 begin
 select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Id,Category_Name,Retail_Id,Retail_Name,Company_Name,
@@ -226,16 +231,18 @@ c.Category_Name,r.Retail_Name,r.Retail_Id,r.Company_Name from Products p inner j
 on p.Category_Id=c.Category_Id inner join Retailers r
 on p.Retail_Id=r.Retail_Id) cd
 end
-exec sp_GetAllPdt
+
+exec sp_GetAllPdtfromdb
 ----------------------------------------------------------------------
-create procedure GetAllCategory
+create procedure sp_GetAllCategoryfromdb
 as
 begin
 select * from Category 
 end
-exec GetAllCategory
+
+exec sp_GetAllCategoryfromdb
 --------------------------------------------------------------------
-alter procedure sp_Pdts_Of_One_Category @cat_id int
+create procedure sp_PdtsOfOneCategoryfromdb @cat_id int
 as
 begin
 select Prod_Id,Prod_Name,Prod_Image,Prod_Price,Prod_Description,Prod_Quantity,Prod_Status,Category_Id,Category_Name,Retail_Id,Retail_Name,Company_Name,
@@ -248,9 +255,7 @@ on p.Retail_Id=r.Retail_Id
 where c.Category_Id= @cat_id) as cd
 end
 
-exec sp_Pdts_Of_One_Category 3
-exec sp_Pdts_Of_One_Category 2
-
+exec sp_PdtsOfOneCategoryfromdb 3
 ---------------------------------------------------------------------
 
 
@@ -261,10 +266,148 @@ exec sp_Pdts_Of_One_Category 2
 drop procedure sp_GetAllProducts
 
 exec sp_GetAllPdt
+--------------------------------------------------------------------------
+
+create procedure GetWishlist @userid int
+as
+begin
+select * from Wishlist where User_Id = @userid
+end
+
+create proc AddToWishlist @userid int, @prodid int
+as
+begin
+	insert into Wishlist values (@userid,@prodid)
+end
+
+exec AddToWishlist 1,101
+delete Wishlist
+
+create proc GetWishItem @prodid int
+as
+begin
+	select * from Products where Prod_Id= @prodid
+end
+
+
+create proc AddTOCart @userid int ,@prodid int , @prod_qty int , @prod_price decimal
+as
+begin
+	insert into Cart values (@userid,@prodid,@prod_qty,@prod_price)
+end 
 
 
 
+create procedure GetCart @userid int
+as
+begin
+select * from Cart where User_Id = @userid
+end
+
+exec AddTOCart 1, 101,2,3456
+
+exec AddTOCart 2, 106,2,3456
+
+select * from Cart
+select * from Wishlist
+---------------------------------------------------------
+
+
+select * from Users
+
+
+ALTER TABLE Users
+DROP CONSTRAINT [UQ__Users__681E8A60CEFCBEC8];
+
+ALTER TABLE Users
+ADD CONSTRAINT [UQ__Users__681E8A60CEFCBEC8] Unique (User_Email);
+
+delete from Users where User_Id=31
+
+sp_rename 'Cart.Quantity', 'Prod_Quantity', 'COLUMN';
+select * from Cart
+sp_rename 'Orders.Quantity', 'Prod_Quantity', 'COLUMN';
+
+Quantity   Prod_Quantity
+
+select * from Products
+select * from Cart
+select * from Orders
+
+
+drop table Cart
+drop table Orders
+
+INSERT INTO Orders values ()
+SELECT name, age, sex, city, p.id, number, n.nationality
+FROM table1 p
+INNER JOIN table2 c ON c.Id = p.Id
+INNER JOIN table3 n ON p.Id = n.Id
+
+
+create view view_ord_ins
+as
+select p.Prod_Id,p.Prod_Name,p.Prod_Price,p.Retail_Id,c.Quantity from Products p inner join Cart c
+on c.Prod_Id=p.Prod_Id
+select * from Orders
+select * from view_ord_ins
+
+insert into view_ord_ins values (103,'Harry Potter',500,1001,1)
+
+insert into Orders values(
+)
+
+
+select * from Orders
+
+alter procedure sp_ins_ord @id int
+as 
+begin
+insert into Orders 
+select c.User_Id,c.Prod_Id,c.Prod_Price,c.Quantity,p.Retail_Id from Products p inner join Cart c
+on c.Prod_Id=p.Prod_Id
+where c.User_Id=@id
+UPDATE P
+SET 
+   p.Prod_Quantity=p.Prod_Quantity-o.Quantity
+FROM Products p
+INNER JOIN
+orders o
+ON p.Prod_Id=o.Prod_Id
+delete from Cart where User_Id=@id
+end
+
+exec sp_ins_ord 1
+
+select * from Users
+select Prod_Quantity from Cart where Prod_Id=101
+select * from Products
+Select * from Orders
+select* from Cart
+
+update Products 
+set Prod_Quantity=5 where Prod_Id In
+(select Prod_Id from orders) 
+
+select * from orders;
+select * from Products
+
+UPDATE P
+SET 
+   p.Prod_Quantity=p.Prod_Quantity-o.Quantity
+FROM Products p
+INNER JOIN
+orders o
+ON p.Prod_Id=o.Prod_Id
 
 
 
+select * from Products where Prod_Id In
+(select  p.Prod_Id,(P.Prod_Quantity-c.Prod_Quantity)as diff from Products p inner join Cart c
+on p.Prod_Id=c.Prod_Id)
 
+
+insert into Products 
+select p.Prod_id,p.Category_Id,p.Prod_Name,p.Prod_Price,p.Prod_Description,P.Prod_Quantity-c.Prod_Quantity,p.Prod_Status
+,p.Retail_Id  from Products p inner join Cart c
+on p.Prod_Id=c.Prod_Id

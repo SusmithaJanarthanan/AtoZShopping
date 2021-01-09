@@ -17,6 +17,9 @@ SortOrder=" ";
 msg:any;
 Min="";
 Max="";
+p:number=1;
+totalRec?:string;
+
 
   constructor(private PdtService:PdtService,private route:Router)
    {
@@ -56,4 +59,5 @@ this.SortOrder=" ";
     this.min='';
     this.max='';
   }
+
 }

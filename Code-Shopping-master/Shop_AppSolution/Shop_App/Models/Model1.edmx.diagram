@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b50de27c88ec4db586af186fce3b2f6b" Name="Diagram1">
+        <EntityTypeShape EntityType="Shopping_AppModel.Cart" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_AppModel.Category" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_AppModel.Order" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_AppModel.Product" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_AppModel.Retailer" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_AppModel.Update_Products" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_AppModel.User" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Shopping_AppModel.Wishlist" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Cart__Prod_Id__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Cart__User_Id__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Products__Catego__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Orders__Prod_id__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Orders__Retail_i__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Orders__User_id__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Products__Retail__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Update_Pr__Prod___5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Wishlist__Prod_I__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Wishlist__User_I__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="Shopping_AppModel.FK__Update_Pr__Retai__73BA3083" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -43,8 +43,8 @@ namespace Mini_Pjt_Shopping.Models
         public virtual ICollection<Update_Products> Update_Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Wishlist> Wishlists { get; set; }
-        public string Retail_Name { get; internal set; }
         public string Company_Name { get; internal set; }
+        public string Retail_Name { get; internal set; }
         public string Category_Name { get; internal set; }
     }
 }

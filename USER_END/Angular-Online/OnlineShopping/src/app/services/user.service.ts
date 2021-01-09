@@ -12,16 +12,24 @@ export class UserService {
   {
 
   }
+
+  public addUser(user:Users)
+  {
+    console.log(user);
+      return this.getHttp.post("http://localhost:61535/api/User",user);
+  }
+
   public getAllUsers()
   {
-      return this.getHttp.get("http://localhost:62441/api/User/all");
+      return this.getHttp.get("http://localhost:61535/api/User/all");
   }
   public loginUser(user:Users)
-  {
-      return this.getHttp.post("http://localhost:62441/api/Login",user);
+    {
+      return this.getHttp.post("http://localhost:61535/api/Login",user);
   }
   public getUserPersonal(id:number)
   {
-      return this.getHttp.get("http://localhost:62441/api/User/details/"+id);
+      return this.getHttp.get("http://localhost:61535/api/User/details/"+id);
   }
+
 }

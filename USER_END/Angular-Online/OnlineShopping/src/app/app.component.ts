@@ -1,10 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { Users } from './models/user.model';
+import { authService } from './services/auth.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'OnlineShopping';
+  name:any;
+  user!:Users;
+  id:any;
+  constructor(private cookieservice:CookieService,private authservice:authService,private router:Router)
+  {
+     this.name=this.cookieservice.get('username');
+     this.id=this.cookieservice.get('userid');
+    // this.id=this.authservice.userid;
+     console.log(this.id);
+     console.log("im called");
+     console.log(this.authservice.username);
+  }
+ngOnInit(): void {
+  //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  //Add 'implements OnInit' to the class.
+
+}
+ngAfterViewInit(): void {
+}
+logout(): void {
+  this.router.navigate(['/Home']);
+  this.cookieservice.deleteAll();
+  this.authservice.isLogged=false;
+  window.location.reload();
+}
+
 }

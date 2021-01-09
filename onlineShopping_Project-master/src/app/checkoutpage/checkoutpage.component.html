@@ -1,0 +1,156 @@
+<body>
+    <div style="text-align: center; font-weight: 1000;font-size:50px;font-family: serif;">Online Shopping</div>
+    <div style="text-align: center;font-size: large;"><i><b>Check Out Page</b></i></div>
+<div class="row">
+    
+<div class="col-75">
+    <div class="container">
+
+<form [formGroup]="myCheckout" class="form-horizontal">
+<!-- <form> -->
+<!-- <div > -->
+    
+    <div style="text-align:justify;">
+    <h4>Billing Address</h4>
+    </div>
+
+    <div >
+
+
+        <div class="form-group">
+        <label for="fullname" class="required">Customer Name</label>
+        <input type="text" formControlName="fullname" class="form-control" id="fullname" placeholder="Enter Full Name">
+        <!-- required
+        [(ngModel)]="fullname" name="fullname" #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty ||name.touched)"
+        class="alert alert-danger">
+        <div *ngIf="name.errors.required"> 
+            Name is required.
+        </div>
+        </div>-->
+        </div>
+
+        <div class="form-group">
+        <label for="email" class="required">Email Id</label>
+        <input type="text" formControlName="email" class="form-control" id="email" placeholder="Enter valid email address">
+    
+        </div>
+
+        <div class="form-group">
+        <label for="add" class="required">Door Number</label>
+        <input type="text" formControlName="doornumber" class="form-control" id="add" placeholder="Enter H.No/Door.No">    
+        </div>
+
+        <div class="form-group">
+        <label for="street" class="required">Street</label>
+        <input type="text" formControlName="street" class="form-control" id="street" placeholder="Enter the street">    
+        </div>
+
+        <div class="form-group">
+        <label for="city" class="required">City</label>
+        <input type="text" formControlName="city" class="form-control" id="city" placeholder="Enter city">    
+        </div>
+
+        <div class="form-group">
+        <label for="state" class="required">State</label>
+        <input type="text" formControlName="state" class="form-control" id="state" placeholder="Enter State">    
+        </div>
+
+        <div class="form-group">
+        <label for="zip" class="required">Zip Code</label>
+        <input type="text" formControlName="zipcode" class="form-control" id="zip" placeholder="Enter Zip Code">
+        </div>
+       
+
+        <!-- <h4>Payment Details</h4> -->
+
+        <div class="form-group">
+        <label type="name" class="required">Cardholder Name</label>
+        <input type="text" formControlName="cardholdername" class="form-control" id="name" placeholder="Enter name as on Debit/Credit Card">
+        </div>
+
+        <div class="form-group">
+        <label for="cardnumber" class="required">Card Number</label>
+        <input type="number" formControlName="cardnumber" class="form-control" id="cardnumber" placeholder="Enter the Card Number">
+        </div>
+        
+        
+        <div class="grid-container">
+
+        <div class="form-group">
+        <label for="exp Date" class="required" >Expiry Date</label>  
+        <div class="grid-container"> 
+        <div class="col-50" >
+            <select name="month" formControlName="expirydate" class="form-control" style="float: left;">
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div>
+        <div class="col-50"> 
+            <select name="year" formControlName="expirydate" class="form-control">
+                <option value="2030">2030</option>
+                <option value="2029">2029</option>
+                <option value="2028">2028</option>
+                <option value="2027">2027</option>
+                <option value="2026">2026</option>
+                <option value="2025">2025</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+            </select>
+        </div>
+        </div>
+
+        </div>
+       
+        <div class="form-group" style="box-sizing:border-box;width:175px">
+        <label for="cvv" class="required">CVV</label>
+        <input type="password" formControlName="cvv" class="form-control" id="cvv" placeholder="Enter CVV">
+        </div>
+
+
+        </div>
+        
+        
+
+        <div class="form-group">
+          <!-- <input type="button" class="btn btn-primary" value="Check Out">  -->
+          <button (click)="ShowOrders()" type="submit" class="btn btn-success">Check Out</button>
+        </div> 
+
+      
+    </div>
+<!-- </div> -->
+</form>
+</div>
+</div>
+
+<div class="col-25">
+    <div class="container">
+      <h4>Cart
+        <span class="price" style="color:black">
+          <i class="fa fa-shopping-cart"></i>
+          <b>4</b>
+        </span>
+      </h4>
+      <p><a href="#">Product 1</a> <span class="price"> Rs.1500</span></p>
+      <p><a href="#">Product 2</a> <span class="price"> Rs.2500</span></p>
+      <p><a href="#">Product 3</a> <span class="price"> Rs.800</span></p>
+      <p><a href="#">Product 4</a> <span class="price"> Rs.200</span></p>
+      <hr>
+      <p>Total: <span class="price" style="color:black"><b> Rs.5000</b></span></p>
+    </div>
+  </div>
+  </div>
+</body>
