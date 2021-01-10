@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute  } from '@angular/router'; 
-import { CookieService } from 'ngx-cookie-service'; 
+import { Router, ActivatedRoute  } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { authService } from './services/auth.service';
 
 @Component({
@@ -17,13 +17,11 @@ export class AppComponent {
     this.user=this.cookieService.get('username');
     console.log(this.user);
     }
- 
-   
 
-  logout(): void {
+   logout(): void {
     this.router.navigate(['']);
     this.cookieService.deleteAll();
     this.authservice.isLogged=false;
-    
+
   }
 }

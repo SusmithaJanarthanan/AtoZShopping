@@ -1,0 +1,16 @@
+<div>
+  <a class="navbar-brand" href="#">OnlineShopping</a>
+</div>
+      <div style="background-color:plum;padding: 10px;">
+      <ul >
+        <li  style="display: inline;padding:10px;"><a routerLink="add">Home</a></li>
+        <li  style="display: inline;padding:10px;"><a routerLink="Products">Products</a></li>
+        <li  style="display: inline;padding:10px;"><a [routerLink]="['Cart','2']">Cart</a></li>
+        <li  style="display: inline;padding:10px;"><a [routerLink]="['Wishlist','2']">Wishlist</a></li>
+        <li  style="display: inline;padding:10px;"><a routerLink="add">Compare</a></li>
+      </ul>
+      </div>
+
+<app-navbar></app-navbar>
+
+<router-outlet></router-outlet>

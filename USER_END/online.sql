@@ -526,10 +526,9 @@ end
 
 exec sp_getOrders 1
 
-drop procedure sp_getOrders
 ---------------------------------------------------for displaying orders of particular user in checkout page---------------
 
-alter procedure sp_getOrdersfromCart
+create procedure sp_getOrdersfromCart
 (@userid int)
 as
 begin
@@ -548,7 +547,7 @@ exec sp_getOrdersfromCart 1
 --------------------create a stored procedure for inserting into orders table and--------------------
 --------------------deleting from cart while the user clicks on checkout-----------------------------
 
-alter procedure sp_ins_order(@id int)
+create procedure sp_ins_order(@id int)
 as
 begin
 insert into Orders
@@ -604,3 +603,5 @@ end
 
 exec GetUserDetails 1
 
+select * from Orders
+select * from Cart
