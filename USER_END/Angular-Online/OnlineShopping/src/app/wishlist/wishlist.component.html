@@ -13,7 +13,7 @@
 
         <div class="view zoom overlay z-depth-2 rounded">
           <img class="img-fluid w-100"
-            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
+            src="{{item.Prod_Image}}" alt="Sample">
 
         </div>
 
@@ -24,19 +24,21 @@
 
           <hr>
           <h6 class="mb-3"  >Price:₹{{item.Prod_Price}}</h6>
+
+
           <button (click)="addToCart(item)" type="button" class="btn btn-primary btn-sm mr-1 mb-2"><i
               class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
           <button  type="button" class="btn btn-light btn-sm mr-1 mb-2"><i
               class="fas fa-info-circle pr-2"></i>Details</button>
-          <!-- <button (click)="removeFromWishlist(item)" type="button" class="btn btn-elegant btn-sm px-3 mb-2 material-tooltip-main"
+          <button (click)="removeFromWishlist(item)" type="button" class="btn btn-elegant btn-sm px-3 mb-2 material-tooltip-main"
             data-toggle="tooltip" data-placement="top" title="Remove from wishlist">Remove From Wishlist<i
-              class="fas fa-times"></i></button> -->
+              class="fas fa-times"></i></button>
 
         </div>
 
       </div>
   </div>
-      <!-- Card -->
+      <!-- Card -->  <div *ngIf="check===1"><h2>Your WishList is Empty Go shop</h2></div>
 
     </div>
     <!-- Grid column -->

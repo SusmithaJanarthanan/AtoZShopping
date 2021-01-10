@@ -12,7 +12,7 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
-        MiniProject_ShopEntities1 entities = new MiniProject_ShopEntities1();
+        MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
 
         [HttpGet]
         [Route("api/User/all")]
@@ -22,6 +22,7 @@ namespace Mini_Pjt_Shopping.Controllers
         }
 
         [HttpPost]
+        [ActionName("AddingUser")]
         public HttpResponseMessage AddUser(User user)
         {
 

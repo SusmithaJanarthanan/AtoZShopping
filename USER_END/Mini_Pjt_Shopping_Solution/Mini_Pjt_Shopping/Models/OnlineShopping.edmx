@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MiniProject_ShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MiniProject_ShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="Cart_Id" />
@@ -221,8 +221,20 @@
           <Parameter Name="userid" Type="int" Mode="In" />
           <Parameter Name="prodid" Type="int" Mode="In" />
         </Function>
+        <Function Name="CalTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="decQty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetCartItems" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetUserDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="int" Mode="In" />
         </Function>
         <Function Name="GetWishItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="prodid" Type="int" Mode="In" />
@@ -230,12 +242,24 @@
         <Function Name="GetWishlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userid" Type="int" Mode="In" />
         </Function>
+        <Function Name="incQty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetAllCategoryfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetAllPdtfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetOnePdtfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_getOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getOrdersfromCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_ins_ord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ins_order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_PdtsOfOneCategoryfromdb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -291,8 +315,7 @@
             <End Role="Wishlist" EntitySet="Wishlist" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MiniProject_ShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -522,7 +545,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MiniProject_ShopEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MiniProject_ShopEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -581,31 +604,65 @@
             <Parameter Name="userid" Mode="In" Type="Int32" />
             <Parameter Name="prodid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="CalTotal" ReturnType="Collection(Decimal)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="decQty">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="GetCart" ReturnType="Collection(MiniProject_ShopModel.GetCart_Result)">
-            <Parameter Name="userid" Mode="In" Type="Int32" />
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetCartItems" ReturnType="Collection(MiniProject_ShopModel.GetCartItems_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetWishItem" ReturnType="Collection(MiniProject_ShopModel.GetWishItem_Result)">
-            <Parameter Name="prodid" Mode="In" Type="Int32" />
+          <Parameter Name="prodid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetWishlist" ReturnType="Collection(MiniProject_ShopModel.GetWishlist_Result)">
-            <Parameter Name="userid" Mode="In" Type="Int32" />
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="incQty">
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetAllCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result)" />
           <FunctionImport Name="sp_GetAllPdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdtfromdb_Result)" />
           <FunctionImport Name="sp_GetOnePdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetOnePdtfromdb_Result)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ins_ord">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_PdtsOfOneCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result)">
-            <Parameter Name="cat_id" Mode="In" Type="Int32" />
+          <Parameter Name="cat_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUserDetails" ReturnType="Collection(MiniProject_ShopModel.GetUserDetails_Result)">
+            <Parameter Name="uid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getOrders" ReturnType="Collection(MiniProject_ShopModel.sp_getOrders_Result)">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getOrdersfromCart" ReturnType="Collection(MiniProject_ShopModel.sp_getOrdersfromCart_Result)">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ins_order">
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetCart_Result">
           <Property Type="Int32" Name="Cart_Id" Nullable="false" />
           <Property Type="Int32" Name="User_Id" Nullable="true" />
           <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="GetCartItems_Result">
+          <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+          <Property Type="Int32" Name="User_Id" Nullable="true" />
+          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" />
           <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
           <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
         </ComplexType>
@@ -621,9 +678,12 @@
           <Property Type="Int32" Name="Retail_Id" Nullable="true" />
         </ComplexType>
         <ComplexType Name="GetWishlist_Result">
-          <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
           <Property Type="Int32" Name="User_Id" Nullable="true" />
-          <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+          <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
+          <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_GetAllCategoryfromdb_Result">
           <Property Type="Int32" Name="Category_Id" Nullable="false" />
@@ -674,12 +734,32 @@
           <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
           <Property Type="Int64" Name="row_num" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="GetUserDetails_Result">
+          <Property Type="String" Name="User_Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="User_Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="User_Phone" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="User_Address" Nullable="true" />
+          <Property Type="String" Name="User_City" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="User_Country" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="sp_getOrders_Result">
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="Prod_Image" Nullable="true" />
+          <Property Type="Int32" Name="Order_Id" Nullable="false" />
+          <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getOrdersfromCart_Result">
+          <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MiniProject_ShopModelStoreContainer" CdmEntityContainer="MiniProject_ShopEntities1">
+        <EntityContainerMapping StorageEntityContainer="MiniProject_ShopModelStoreContainer" CdmEntityContainer="MiniProject_ShopEntities2">
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="MiniProject_ShopModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -776,12 +856,28 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="AddTOCart" FunctionName="MiniProject_ShopModel.Store.AddTOCart" />
           <FunctionImportMapping FunctionImportName="AddToWishlist" FunctionName="MiniProject_ShopModel.Store.AddToWishlist" />
+          <FunctionImportMapping FunctionImportName="CalTotal" FunctionName="MiniProject_ShopModel.Store.CalTotal" />
+          <FunctionImportMapping FunctionImportName="decQty" FunctionName="MiniProject_ShopModel.Store.decQty" />
           <FunctionImportMapping FunctionImportName="GetCart" FunctionName="MiniProject_ShopModel.Store.GetCart">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCart_Result">
                 <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
                 <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCartItems" FunctionName="MiniProject_ShopModel.Store.GetCartItems">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCartItems_Result">
+                <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
                 <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
                 <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
               </ComplexTypeMapping>
@@ -805,12 +901,16 @@
           <FunctionImportMapping FunctionImportName="GetWishlist" FunctionName="MiniProject_ShopModel.Store.GetWishlist">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishlist_Result">
-                <ScalarProperty Name="Wishlist_Id" ColumnName="Wishlist_Id" />
                 <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Wishlist_Id" ColumnName="Wishlist_Id" />
                 <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="incQty" FunctionName="MiniProject_ShopModel.Store.incQty" />
           <FunctionImportMapping FunctionImportName="sp_GetAllCategoryfromdb" FunctionName="MiniProject_ShopModel.Store.sp_GetAllCategoryfromdb">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result">
@@ -877,6 +977,39 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUserDetails" FunctionName="MiniProject_ShopModel.Store.GetUserDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetUserDetails_Result">
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_Address" ColumnName="User_Address" />
+                <ScalarProperty Name="User_City" ColumnName="User_City" />
+                <ScalarProperty Name="User_Country" ColumnName="User_Country" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getOrders" FunctionName="MiniProject_ShopModel.Store.sp_getOrders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_getOrders_Result">
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+                <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getOrdersfromCart" FunctionName="MiniProject_ShopModel.Store.sp_getOrdersfromCart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_getOrdersfromCart_Result">
+                <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+                <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+                <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ins_order" FunctionName="MiniProject_ShopModel.Store.sp_ins_order" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

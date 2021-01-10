@@ -30,6 +30,12 @@ import { authService } from './services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
+import { CheckoutService } from './services/checkout.service';
+import { MyProfileService } from './services/myprofile.service';
+import { OrderService } from './services/orders.service';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 
 
@@ -50,7 +56,9 @@ import { AuthGuardService } from './services/auth-guard.service';
     WishlistComponent,
     ComparePasswordDirective,
     NameheaderComponent,
-    LoginComponent
+    LoginComponent,
+    CheckoutpageComponent,
+    ThankyouComponent
 
     ],
   imports: [
@@ -59,9 +67,10 @@ import { AuthGuardService } from './services/auth-guard.service';
     FormsModule,
     HttpClientModule,
     NgxImageZoomModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    PinchZoomModule
   ],
-  providers: [PdtService,WishService,CartService,UserService,authService,CookieService,AuthGuardService],
+  providers: [PdtService,WishService,CartService,UserService,authService,CookieService,AuthGuardService,CheckoutService,MyProfileService,OrderService],
   bootstrap: [AppComponent]
 })
 

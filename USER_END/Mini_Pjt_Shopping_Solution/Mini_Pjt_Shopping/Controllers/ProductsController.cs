@@ -12,12 +12,13 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ProductsController : ApiController
     {
-        MiniProject_ShopEntities1 entities = new MiniProject_ShopEntities1();
+        MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
 
         public object Retail_Name { get; private set; }
         public object Category_Name { get; private set; }
 
         [HttpGet]
+        [ActionName("GetAllProd")]
         public HttpResponseMessage GetAllProducts()
         {
             List<Product> pdts = new List<Product>();
@@ -29,6 +30,7 @@ namespace Mini_Pjt_Shopping.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, pdts);
         }
 
+        [ActionName("GetProd")]
         public HttpResponseMessage Get(int id) 
         {
             List<Product> pdts = new List<Product>();

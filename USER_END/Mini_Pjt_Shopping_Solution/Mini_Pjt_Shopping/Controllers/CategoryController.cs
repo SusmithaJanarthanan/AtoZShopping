@@ -12,9 +12,10 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class CategoryController : ApiController
     {
-        MiniProject_ShopEntities1 entities = new MiniProject_ShopEntities1();
+        MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
 
         [HttpGet]
+        [ActionName("GetAllCat")]
         public HttpResponseMessage GetCategory()
         {
             List<Category> cats = new List<Category>();
@@ -27,6 +28,7 @@ namespace Mini_Pjt_Shopping.Controllers
         }
 
         [HttpGet]
+        [ActionName("GetOnePdtFrmCat")]
         public HttpResponseMessage GetAllProductsofOneCategory(int id)
         {
             List<Product> pdts = new List<Product>();

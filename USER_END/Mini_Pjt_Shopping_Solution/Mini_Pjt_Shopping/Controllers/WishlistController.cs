@@ -13,8 +13,9 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class WishlistController : ApiController
     {
-        MiniProject_ShopEntities1 entities = new MiniProject_ShopEntities1();
+        MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
 
+        [ActionName("Items")]
         [HttpGet]
         public HttpResponseMessage GetWishlist(int id)
         {
@@ -24,13 +25,13 @@ namespace Mini_Pjt_Shopping.Controllers
             foreach (var item in res.ToList())
             {
                 Product pdt = entities.Products.Where(p => p.Prod_Id == item.Prod_Id).FirstOrDefault();
-                prodlist.Add(new Product { Prod_Id = pdt.Prod_Id, Prod_Name = pdt.Prod_Name, Prod_Price = pdt.Prod_Price, Prod_Quantity = pdt.Prod_Quantity, Prod_Description = pdt.Prod_Description, Prod_Image = pdt.Prod_Image });
+                prodlist.Add(new Product { Prod_Id = pdt.Prod_Id, Prod_Name = pdt.Prod_Name, Prod_Price = pdt.Prod_Price, Prod_Image = pdt.Prod_Image });
 
             }
             return Request.CreateResponse(HttpStatusCode.OK, prodlist);
 
         }
-
+        [ActionName("Add")]
         [HttpPost]
         public HttpResponseMessage AddToWishlist(Wishlist wish)
         {
@@ -40,8 +41,8 @@ namespace Mini_Pjt_Shopping.Controllers
             {
                 wishlist.Add(new Wishlist { User_Id = item.User_Id, Prod_Id = item.Prod_Id });
             }
-            Wishlist wish1 = entities.Wishlists.Where(w => w.User_Id == wish.User_Id && w.Prod_Id == wish.Prod_Id).FirstOrDefault();
-            if (wish != null)
+            Wishlist wish1 = wishlist.Where(w => w.User_Id == wish.User_Id && w.Prod_Id == wish.Prod_Id).FirstOrDefault();
+            if (wish1 != null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, "Already Present");
             }
@@ -53,18 +54,18 @@ namespace Mini_Pjt_Shopping.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, "Added to wishlist");
         }
-
-        [HttpDelete]
-        public HttpResponseMessage DelWishItem(Wishlist wish)
+        [ActionName("Delete")]
+        [HttpPut]
+        public HttpResponseMessage DelWishItem(int id, Wishlist wish)
         {
-            Wishlist wish1 = entities.Wishlists.Where(u => u.User_Id == wish.User_Id && u.Prod_Id == wish.Prod_Id).FirstOrDefault();
+            Wishlist wish1 = entities.Wishlists.Where(u => u.User_Id == id && u.Prod_Id == wish.Prod_Id).FirstOrDefault();
             if (wish1 != null)
             {
                 entities.Wishlists.Remove(wish1);
                 entities.SaveChanges();
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Not Present in Wishlist");
+                return Request.CreateResponse(HttpStatusCode.Accepted, "Not Present in Wishlist");
 
             return Request.CreateResponse(HttpStatusCode.OK, "Product Removed From Wishlist");
         }

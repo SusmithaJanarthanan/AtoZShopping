@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Cart } from '../models/cart.model';
 import { Wishlist } from '../models/wishlist.model';
-import { authService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { WishService } from '../services/wish.service';
 
@@ -14,23 +12,38 @@ import { WishService } from '../services/wish.service';
 })
 export class WishlistComponent implements OnInit {
 wishlist:any;
+wish:Wishlist;
 id?:any;
 cart:Cart;
 item:any;
+check:any;
   constructor(private myRoute:ActivatedRoute, private wishService:WishService,private route:Router,
-    private cartService:CartService,private authService:authService,private cookieservice:CookieService)
+    private cartService:CartService)
+
   {
-    this.id=this.authService.userid;
-    this.id=this.cookieservice.get('userid');
+
+    this.wish=new Wishlist();
     this.item=new Wishlist();
     this.cart=new Cart();
     this.id=this.myRoute.snapshot.params["id"];
     console.log(this.id);
 
-    this.wishService.getWishlist(this.authService.userid).subscribe(data=>{
+    this.wishService.getWishlist(this.id).subscribe(data=>{
       this.wishlist=data;
       console.log(data);
+      if(this.wishlist.length<=0)
+      {
+        console.log("Hiii");
+        this.check=1;
+      }
     })
+  }
+
+  addToWishlist(item:any)
+  {
+    this.wish.User_Id=this.id;
+    this.wish.Prod_Id=item.Prod_Id;
+    this.wishService.addToWishlist(this.wish).subscribe(data=>console.log(data));
   }
 
   addToCart(item:any)
@@ -39,15 +52,14 @@ item:any;
     this.cart.Prod_Id=item.Prod_Id;
     this.cart.Prod_Price=item.Prod_Price;
     this.cart.Prod_Quantity=item.Prod_Quantity;
-
     this.cartService.addToCart(this.cart).subscribe(data=>console.log(data));
   }
-  /*removeFromWishlist(item:Wishlist)
+  removeFromWishlist(wish1:Wishlist)
   {
-    this.wishService.removeFromWishlist(item).subscribe(data=>console.log(data));
-  }*/
+    this.wishService.removeFromWishlist(this.id,wish1).subscribe(data=>console.log(data));
+    window.location.reload();
+  }
   ngOnInit(): void {
-
   }
 
 }

@@ -13,8 +13,11 @@ namespace Mini_Pjt_Shopping.Models
     
     public partial class GetWishlist_Result
     {
-        public int Wishlist_Id { get; set; }
         public Nullable<int> User_Id { get; set; }
-        public Nullable<int> Prod_Id { get; set; }
+        public int Wishlist_Id { get; set; }
+        public int Prod_Id { get; set; }
+        public string Prod_Name { get; set; }
+        public Nullable<decimal> Prod_Price { get; set; }
+        public string Prod_Image { get; set; }
     }
 }

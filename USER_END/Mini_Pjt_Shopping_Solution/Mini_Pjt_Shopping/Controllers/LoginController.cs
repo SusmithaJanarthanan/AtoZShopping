@@ -13,8 +13,8 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class LoginController : ApiController
     {
-        MiniProject_ShopEntities1 entities = new MiniProject_ShopEntities1();
-        [HttpPost]
+        MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
+        [HttpPost]       
         public HttpResponseMessage UserLogin(User user)
         {
             User user1 = entities.Users.Where(u => u.User_Email == user.User_Email &&

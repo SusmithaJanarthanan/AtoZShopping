@@ -8,14 +8,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
---><script type="text/javascript">
-    var qty1=123;
-    //qty1 =document.getElementById("qty").innerHTML;
-    function docWrite(variable){
-        document.write(variable);
-    }
-
-</script>
+-->
 </body>
 </head>
 
@@ -27,32 +20,27 @@
       <div class="col-xl-7 col-lg-8 col-md-7">
         <div class="border border-gainsboro p-3">
 
-          <h2 class="h6 text-uppercase mb-0">Cart Total ({{calculate()}} Items): <strong class="cart-total">33</strong></h2>
+          <h2 class="h6 text-uppercase mb-0">Cart</h2>
         </div>
         <div *ngFor="let item of cart" >
+
         <div class="border border-gainsboro p-3 mt-3 clearfix item">
           <div class="text-lg-left">
             <i class="fa fa-ticket fa-2x text-center" aria-hidden="true"></i>
           </div>
           <div class="col-lg-5 col-5 text-lg-left">
-            <h3 class="h6 mb-0">{{item.Prod_Name}}<br><small><small>Cost: {{item.Prod_Price}}</small></small></h3>
-          </div>
-          <div class="product-price d-none">{{item.Prod_Price*item.Prod_Quantity}}</div>
-          <div class="pass-quantity col-lg-3 col-md-4 col-sm-3">
-            <label for="pass-quantity" class="pass-quantity">Quantity</label>
-            <input class="form-control" type="number" id="qty" value= "" min="1" max="5" >
 
-          </div>
-          <div class="col-lg-2 col-md-1 col-sm-2 product-line-price pt-4">
-              <h1>
-                  <script >
-                      docWrite("qty1")
-                  </script>
-              </h1>
-            <span class="product-line-price">{{item.Prod_Price*item.Prod_Quantity}}</span>
+          <h2>{{item.Prod_Name}}</h2>
+          <h3>Price:{{item.Prod_Price}}</h3>
+              <span>
+                  <button (click)="changeQty(item.Cart_Id,1)" class="btn btn-success">+</button>
+                  <h3>Quantity:{{item.Prod_Quantity}}</h3>
+                  <button (click)="changeQty(item.Cart_Id,2)" class="btn btn-success" >-</button>
+                  <h3>Cost: {{item.Prod_Price* item.Prod_Quantity  }}</h3>
+              </span>
           </div>
           <div class="remove-item pt-4">
-            <button class="remove-product btn-light">
+            <button (click)="removeFromCart(item.Cart_Id)" class="remove-product btn-light">
               Delete
             </button>
           </div>
@@ -60,6 +48,13 @@
         </div>
       </div>
 
+      <div>
+
+      </div>
+      <br>
+      <div *ngIf="cartTotal==0; else elseBlock"><h2>Your Cart is Empty Go shop</h2></div>
+
+      <ng-template #elseBlock>
       <div class="col-xl-3 col-lg-4 col-md-5 totals">
         <div class="border border-gainsboro px-3">
           <div class="border-bottom border-gainsboro">
@@ -67,21 +62,21 @@
           </div>
           <div class="totals-item d-flex align-items-center justify-content-between mt-3">
             <p class="text-uppercase">Subtotal</p>
-            <p class="totals-value" id="cart-subtotal">95</p>
+            <p class="totals-value" id="cart-subtotal">₹{{cartTotal}}</p>
           </div>
           <div class="totals-item d-flex align-items-center justify-content-between">
             <p class="text-uppercase">Estimated Tax</p>
-            <p class="totals-value" id="cart-tax">3.60</p>
+            <p class="totals-value" id="cart-tax">₹{{cartTotal*.05}}</p>
           </div>
           <div class="totals-item totals-item-total d-flex align-items-center justify-content-between mt-3 pt-3 border-top border-gainsboro">
             <p class="text-uppercase"><strong>Total</strong></p>
-            <p class="totals-value font-weight-bold cart-total">98.60</p>
+            <p class="totals-value font-weight-bold cart-total">₹{{cartTotal*1.05 }}</p>
           </div>
         </div>
-        <a href="#" class="mt-3 btn btn-pay w-100 d-flex justify-content-between btn-lg rounded-0">Pay Now <span class="totals-value cart-total">98.60</span></a>
+        <button><a (click)="redirect()" class="mt-3 btn btn-pay w-100 d-flex justify-content-between btn-lg rounded-0">Pay Now <span class="totals-value cart-total">₹{{cartTotal*1.05}}</span></a></button>
       </div>
+    </ng-template>
     </div>
   </div><!-- container -->
-
 
 

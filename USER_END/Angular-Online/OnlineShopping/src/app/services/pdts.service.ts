@@ -10,19 +10,19 @@ export class PdtService
   }
   public getAllPdts()
   {
-    return this.getHttp.get("http://localhost:61535/api/Products");
+    return this.getHttp.get("http://localhost:61535/api/Products/GetAllProd");
   }
   public getOnePdtFromApi(id:number)
 {
-return this.getone.get("http://localhost:61535/api/Products/"+id);
+return this.getone.get("http://localhost:61535/api/Products/GetProd/"+id);
 }
 public getAllCategory()
 {
-  return this.getCat.get("http://localhost:61535/api/Category");
+  return this.getCat.get("http://localhost:61535/api/Category/GetAllCat");
 }
 public getPdtOfOneCategory(id:number)
 {
-  return this.getoneCat.get("http://localhost:61535/api/Category/"+id);
+  return this.getoneCat.get("http://localhost:61535/api/Category/GetOnePdtFrmCat/"+id);
 }
 }
 

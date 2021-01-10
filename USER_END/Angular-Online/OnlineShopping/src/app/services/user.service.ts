@@ -16,7 +16,7 @@ export class UserService {
   public addUser(user:Users)
   {
     console.log(user);
-      return this.getHttp.post("http://localhost:61535/api/User",user);
+      return this.getHttp.post("http://localhost:61535/api/User/AddingUser",user);
   }
 
   public getAllUsers()

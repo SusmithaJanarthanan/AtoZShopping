@@ -21,7 +21,7 @@ export class FilterPipe implements PipeTransform {
     {
       console.log(min);
       console.log(max);
-      alert("Data is wrong");
+      alert("Minimum Price is greater than Maximum Price");
       return value;
     }
     else

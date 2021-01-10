@@ -1,28 +1,13 @@
 
-<!-- <div style="background-color: aliceblue;padding: 40px;">
-  <li  *ngFor="let item of Category" style="display: inline;">
-  <button class="btn btn-primary" style="margin: 10px;"
-  (click)="showDetails1(item.Category_Id)">{{item.Category_Name}}</button>
-</li>
-  &nbsp;
-</div> -->
-
 <div class="dropdown">
-  <button class="dropbtn" >All Categories</button>
+  <button class="buttn" style="background:none ;">All Categories</button>
   <div class="dropdown-content" >
-    <li  *ngFor="let item of Category" style="display: inline;">
-    <button class="btn btn-primary" style="margin: 10px;"
+    <li  *ngFor="let item of Category" style="display: block;">
+    <button class="btn" style="margin-left: 15px;padding: 5px;margin-bottom: 10px;margin-top: 10px;"
     (click)="showDetails1(item.Category_Id)">{{item.Category_Name}}</button>
     </li>
   </div>
 </div>
 
-<!-- <div class="dropdown">
-  <button class="dropbtn" >All Categories</button>
-  <div class="dropdown-content" *ngIf="Category">
-    <li *ngFor="let item of Category">
-      <a (click)="showDetails1(item.Category_Id)"> {{item.Category_Name}}</a></li>
-  </div>
-</div>
- -->
+
 

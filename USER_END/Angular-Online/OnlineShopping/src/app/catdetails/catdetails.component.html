@@ -24,12 +24,13 @@
         <button class="btn btn-primary" (click)='onclear()'>Clear</button>
     </div>
     <div style="padding-left: 15px;padding-top: 10px;">
+      <label  class="nav1">Filter</label>
       <p>
-      Minimum value
+      Minimum Price
       <input type="number" [(ngModel)]="Min" />
       </p>
       <p>
-        Maximum value
+      Maximum Price
       <input type="number" [(ngModel)]="Max" />
       </p>
       <button class="btn btn-primary" (click)="FilterByPrice()">  Submit</button>&nbsp;
@@ -40,27 +41,28 @@
     </ul>
   </div>
 
+
   <!-- Content -->
 <div *ngIf="category">
 <div></div>
 <div class="container">
   <h3 class="h3"> </h3>
   <div class="row">
-    <div class="id" *ngIf="( category| filter:[min,max] |sort:[SortbyParam,SortOrder] )as result">
-      <div class="col-md-3 col-sm-6" *ngFor="let item of result">
+    <div class="id" *ngIf="( category| filter:[min,max] |sort:[SortbyParam,SortOrder]| paginate: { itemsPerPage: 6, currentPage: p } )as result">
+      <div class="col-md-4 col-sm-6" *ngFor="let item of result">
      <!-- {{result.length}} -->
-          <div class="product-grid2" [ngClass]="{imgClass:item.Prod_Status==='pending'}">
+          <div class="product-grid2" [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}">
             <div class="product-image2">
-                <a [ngClass]="{imgClass:item.Prod_Status==='pending'}" role="button"  (click)="(item.Prod_Status==='pending')?'':showDetails(item.Prod_Id)">
+                <a [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':showDetails(item.Prod_Id)">
                     <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
                     <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
                 </a>
                 <ul class="social">
-                    <li><a  [ngClass]="{imgClass:item.Prod_Status==='pending'}" role="button"  (click)="(item.Prod_Status==='pending')?'':showDetails(item.Prod_Id)"  data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                    <li><a  [ngClass]="{imgClass:item.Prod_Status==='pending'}"   [routerLink]="item.Prod_Status==='pending' ? [] : ['/Home']"  data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                    <li><a  [ngClass]="{imgClass:item.Prod_Status==='pending'}"   [routerLink]="item.Prod_Status==='pending' ? [] : ['/Home']"  data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':''"  data-tip="Add to Compare"><i class="fa fa-exchange"></i></a></li>
+                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"    (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToWishlist(item.Prod_Id)"  data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+
                 </ul>
-                <a [ngClass]="{imgClass:item.Prod_Status==='pending'}" class="add-to-cart" [routerLink]="item.Prod_Status==='pending' ? [] : ['/Home']">{{item.Prod_Status==="pending"?"To Be Restocked Soon":"Add to cart"}}</a>
+                <a [ngClass]="{imgClass:item.Prod_Status==='pending'}" class="add-to-cart"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToCart(item)">{{(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?"To Be Restocked Soon":"Add to cart"}}</a>
               </div>
               <div class="product-content">
                   <h3 class="title">{{item.Prod_Name}}</h3>
@@ -84,7 +86,11 @@
     </div>
   </div>
   </div>
-    </div>  </div>
+    </div>
+    <div class="container" style="margin-left:250px ;">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
 
 
 

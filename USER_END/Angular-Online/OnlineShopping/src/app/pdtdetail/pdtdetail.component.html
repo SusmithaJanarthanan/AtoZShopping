@@ -1,27 +1,4 @@
-
-
 <div *ngIf="product">
-<!-- <div *ngFor="let item of product">
-
-Name:{{item.Prod_Name}}
-<br>
-Price:{{item.Prod_Price}}
- <br>
- Description:{{item.Prod_Description}}
- <br>
- Quantity:{{item.Prod_Quantity}}
- <br>
- Image:{{item.Prod_Image}}
- <br>
- NAme:{{item.Category_Name}}
- <br>
- RetailName:{{item.Retail_Name}}
- <br>
- Status:{{item.Prod_Status}}
- <button class="btn btn-primary">Add to Cart</button>
- <hr>
- </div> -->
-
 <div *ngFor="let item of product">
 <div class="container">
   <div class="card">
@@ -30,31 +7,11 @@ Price:{{item.Prod_Price}}
         <div class="preview col-md-6">
           <div class="large-5 column">
             <div class="xzoom-container">
-               <img class="big-image" id="zoom" [src]="['https://res.cloudinary.com/dxfq3iotg/image/upload/v1565190714/gallery/preview/01_b_car.jpg']" />
-                <div class="small-image">
-                   <img class="xzoom-gallery1"  id="im1"(onclick)="change(1)" width="80" [src]="['https://res.cloudinary.com/dxfq3iotg/image/upload/v1565190716/gallery/thumbs/01_b_car.jpg']">
-                    <img class="xzoom-gallery2" id="im2" (onclick)="change(2)" width="80" [src]="['https://res.cloudinary.com/dxfq3iotg/image/upload/v1565190720/gallery/preview/02_o_car.jpg']">
-                    <img class="xzoom-gallery3" id="im3"(onclick)="change(3)" width="80" [src]="['https://res.cloudinary.com/dxfq3iotg/image/upload/v1565190715/gallery/preview/03_r_car.jpg']">
-                   </div>
+        <pinch-zoom>
+              <img class="big-image" id="zoom" [src]="['https://res.cloudinary.com/dxfq3iotg/image/upload/v1565190714/gallery/preview/01_b_car.jpg']" />
+        </pinch-zoom>
             </div>
         </div>
-
-
-          <!-- <div class="preview-pic tab-content">
-            <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
-            <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-            <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-            <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-            <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
-          </div>
-          <ul class="preview-thumbnail nav nav-tabs">
-            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-            <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-            <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-            <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-            <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-          </ul> -->
-
         </div>
         <div class="details col-md-6">
           <h3 class="product-title">{{item.Prod_Name}}</h3>
@@ -77,11 +34,9 @@ Price:{{item.Prod_Price}}
           <p class="vote"> Sold By<strong>{{item.Retail_Name}}</strong>
             &nbsp;
             <strong>{{item.Company_Name}}</strong></p>
-
-
           <div class="action">
-            <button class="add-to-cart btn btn-default" type="button" routerLink="/Home">add to cart</button> &nbsp;
-            <button class="like btn btn-default" type="button" matTooltip="Add to Wishlist"><span class="fa fa-heart"></span></button>
+            <button class="add-to-cart btn btn-default" type="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToCart(item)">add to cart</button> &nbsp;
+            <button class="like btn btn-default" type="button" (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToWishlist(item.Prod_Id)" data-toggle="tooltip" title="Add to Wishlist"><span class="fa fa-heart"></span></button>
 
           </div>
         </div>

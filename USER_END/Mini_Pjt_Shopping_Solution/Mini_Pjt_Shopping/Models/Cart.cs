@@ -11,16 +11,25 @@ namespace Mini_Pjt_Shopping.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Cart
     {
+        [DataMember]
         public int Cart_Id { get; set; }
+        [DataMember]
         public Nullable<int> User_Id { get; set; }
+        [DataMember]
         public Nullable<int> Prod_Id { get; set; }
+        [DataMember]
         public Nullable<int> Prod_Quantity { get; set; }
+        [DataMember]
         public Nullable<decimal> Prod_Price { get; set; }
-    
+        [DataMember]
+
         public virtual Product Product { get; set; }
+        [DataMember]
         public virtual User User { get; set; }
     }
 }

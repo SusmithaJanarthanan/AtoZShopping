@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { Cart } from '../models/cart.model';
+import { Wishlist } from '../models/wishlist.model';
+import { CartService } from '../services/cart.service';
 import { PdtService } from '../services/pdts.service';
+import { WishService } from '../services/wish.service';
 
 
 @Component({
@@ -10,6 +15,9 @@ import { PdtService } from '../services/pdts.service';
 })
 export class GetallpdtComponent implements OnInit {
 products:any;
+id:any;
+wish:Wishlist;
+cart:Cart;
 min="";
 max="";
 SortbyParam=" ";
@@ -18,18 +26,58 @@ msg:any;
 Min="";
 Max="";
 p:number=1;
-totalRec?:string;
+check:any;
 
 
-  constructor(private PdtService:PdtService,private route:Router)
+
+  constructor(private PdtService:PdtService,private route:Router,private wishService:WishService,private cookieservice:CookieService,private cartservice:CartService)
    {
-    //  this.PdtService.getAllPdts().subscribe(data=>{
-    //    this.products=data;
-    //  })
+     this.wish=new Wishlist();
+     this.cart=new Cart();
+     this.check=this.cookieservice.get('userid');
    }
+notallow()
+{
+     alert('Login Pls');
+}
+
+
  showDetails(id:number)
 {
-this.route.navigate(["Details",id]);
+ console.log("hi"+id)
+ this.route.navigate(["Details",id]);
+}
+
+addToWishlist(id:number)
+{
+  if(this.check==='')
+  {
+  alert("login pls")
+  }
+  else
+  {
+  this.wish.User_Id=parseInt(this.cookieservice.get('userid'));
+  this.wish.Prod_Id=id;
+  console.log(this.wish.Prod_Id);
+  console.log(this.wish);
+  this.wishService.addToWishlist(this.wish).subscribe(data=>console.log(data));
+  }
+}
+
+addToCart(item:any)
+  {
+    if(this.check==='')
+  {
+  alert("login pls")
+  }
+  else
+  {
+    this.cart.User_Id=parseInt(this.cookieservice.get('userid'));
+    this.cart.Prod_Id=item.Prod_Id;
+    this.cart.Prod_Price=item.Prod_Price;
+    this.cart.Prod_Quantity=item.Prod_Quantity;
+    this.cartservice.addToCart(this.cart).subscribe(data=>console.log(data));
+  }
 }
 
 FilterByPrice()
@@ -58,6 +106,11 @@ this.SortOrder=" ";
     this.Max=''
     this.min='';
     this.max='';
+  }
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+
   }
 
 }

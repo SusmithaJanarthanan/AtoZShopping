@@ -15,10 +15,10 @@ namespace Mini_Pjt_Shopping.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MiniProject_ShopEntities1 : DbContext
+    public partial class MiniProject_ShopEntities2 : DbContext
     {
-        public MiniProject_ShopEntities1()
-            : base("name=MiniProject_ShopEntities1")
+        public MiniProject_ShopEntities2()
+            : base("name=MiniProject_ShopEntities2")
         {
         }
     
@@ -70,6 +70,24 @@ namespace Mini_Pjt_Shopping.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddToWishlist", useridParameter, prodidParameter);
         }
     
+        public virtual ObjectResult<Nullable<decimal>> CalTotal(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("CalTotal", idParameter);
+        }
+    
+        public virtual int decQty(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("decQty", idParameter);
+        }
+    
         public virtual ObjectResult<GetCart_Result> GetCart(Nullable<int> userid)
         {
             var useridParameter = userid.HasValue ?
@@ -77,6 +95,15 @@ namespace Mini_Pjt_Shopping.Models
                 new ObjectParameter("userid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCart_Result>("GetCart", useridParameter);
+        }
+    
+        public virtual ObjectResult<GetCartItems_Result> GetCartItems(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetCartItems_Result>("GetCartItems", useridParameter);
         }
     
         public virtual ObjectResult<GetWishItem_Result> GetWishItem(Nullable<int> prodid)
@@ -95,6 +122,15 @@ namespace Mini_Pjt_Shopping.Models
                 new ObjectParameter("userid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetWishlist_Result>("GetWishlist", useridParameter);
+        }
+    
+        public virtual int incQty(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("incQty", idParameter);
         }
     
         public virtual ObjectResult<sp_GetAllCategoryfromdb_Result> sp_GetAllCategoryfromdb()
@@ -132,6 +168,42 @@ namespace Mini_Pjt_Shopping.Models
                 new ObjectParameter("cat_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_PdtsOfOneCategoryfromdb_Result>("sp_PdtsOfOneCategoryfromdb", cat_idParameter);
+        }
+    
+        public virtual ObjectResult<GetUserDetails_Result> GetUserDetails(Nullable<int> uid)
+        {
+            var uidParameter = uid.HasValue ?
+                new ObjectParameter("uid", uid) :
+                new ObjectParameter("uid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUserDetails_Result>("GetUserDetails", uidParameter);
+        }
+    
+        public virtual ObjectResult<sp_getOrders_Result> sp_getOrders(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getOrders_Result>("sp_getOrders", useridParameter);
+        }
+    
+        public virtual ObjectResult<sp_getOrdersfromCart_Result> sp_getOrdersfromCart(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getOrdersfromCart_Result>("sp_getOrdersfromCart", useridParameter);
+        }
+    
+        public virtual int sp_ins_order(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ins_order", idParameter);
         }
     }
 }

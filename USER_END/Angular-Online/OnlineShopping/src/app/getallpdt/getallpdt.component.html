@@ -25,12 +25,13 @@
           <button class="btn btn-primary" (click)='onclear()'>Clear</button>
       </div>
       <div style="padding-left: 15px;padding-top: 10px;">
+        <label  class="nav1"> Filter</label>
         <p>
-        Minimum value
+        Minimum Price
         <input type="number" [(ngModel)]="Min" />
         </p>
         <p>
-          Maximum value
+          Maximum Price
         <input type="number" [(ngModel)]="Max" />
         </p>
         <button class="btn btn-primary" (click)="FilterByPrice()">  Submit</button>&nbsp;
@@ -53,18 +54,18 @@
               <div class="product-grid2" [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" >
               <div class="product-image2">
                   <a [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"  role="button" (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':showDetails(item.Prod_Id)" >
-                      <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
-                      <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
+                      <img class="pic-1" src="{{item.Prod_Image}}" style="height:250px;" >
+                      <img class="pic-2" src="{{item.Prod_Image}}" style="height:250px;">
                   </a>
 
                   <ul class="social">
                       <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':showDetails(item.Prod_Id)" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                      <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"  [routerLink]="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 ) ? [] : ['/Home']"  data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                      <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"  [routerLink]="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )? [] : ['/Home']"  data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                      <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToWishlist(item.Prod_Id)" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                      <!-- <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"  [routerLink]="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )? [] : ['/Home']"  data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li> -->
 
                     </ul>
 
-                  <a [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"  class="add-to-cart"  [routerLink]="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )? [] : ['/Home']" >{{item.Prod_Status==='pending'||item.Prod_Quantity<=0?"To Be Restocked Soon":"Add to cart"}}</a>
+                  <a [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"  class="add-to-cart"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToCart(item)" >{{item.Prod_Status==='pending'||item.Prod_Quantity<=0?"To Be Restocked Soon":"Add to cart"}}</a>
                 </div>
 
                 <div class="product-content">
@@ -83,7 +84,6 @@
           <div class="error-404" style="margin-left:250px">
             <div class="error-code m-b-10 m-t-20"> <i class="fa fa-warning"></i></div>
             <h2 class="font-bold">Oops!No Products Found</h2>
-
 
         </div></div>
       </div>

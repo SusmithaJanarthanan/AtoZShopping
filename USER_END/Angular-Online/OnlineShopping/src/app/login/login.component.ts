@@ -33,6 +33,7 @@ Password="";
           this.user1 = data; // able to print the data
           JSON.stringify(this.user1);
           this.processResults();
+          // this.cookieService.set('username', this.user1.User_Name);
         },
           err=>this.msg = err.error.Message);
     }
@@ -50,6 +51,7 @@ Password="";
       this.cookieService.set('userid',this.user1.User_Id);
 
       this.authservice.isLogged=true;
+      window.location.reload();
       this.router.navigate(['/Products']);
   }
 

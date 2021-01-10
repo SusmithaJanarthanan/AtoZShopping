@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="MiniProject_ShopModelStoreContainer" CdmEntityContainer="MiniProject_ShopEntities1">
+  <EntityContainerMapping StorageEntityContainer="MiniProject_ShopModelStoreContainer" CdmEntityContainer="MiniProject_ShopEntities2">
     <EntitySetMapping Name="Carts">
       <EntityTypeMapping TypeName="MiniProject_ShopModel.Cart">
         <MappingFragment StoreEntitySet="Cart">
@@ -97,12 +97,28 @@
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="AddTOCart" FunctionName="MiniProject_ShopModel.Store.AddTOCart" />
     <FunctionImportMapping FunctionImportName="AddToWishlist" FunctionName="MiniProject_ShopModel.Store.AddToWishlist" />
+    <FunctionImportMapping FunctionImportName="CalTotal" FunctionName="MiniProject_ShopModel.Store.CalTotal" />
+    <FunctionImportMapping FunctionImportName="decQty" FunctionName="MiniProject_ShopModel.Store.decQty" />
     <FunctionImportMapping FunctionImportName="GetCart" FunctionName="MiniProject_ShopModel.Store.GetCart">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCart_Result">
           <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
           <ScalarProperty Name="User_Id" ColumnName="User_Id" />
           <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetCartItems" FunctionName="MiniProject_ShopModel.Store.GetCartItems">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetCartItems_Result">
+          <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+          <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
           <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
           <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
         </ComplexTypeMapping>
@@ -126,12 +142,16 @@
     <FunctionImportMapping FunctionImportName="GetWishlist" FunctionName="MiniProject_ShopModel.Store.GetWishlist">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetWishlist_Result">
-          <ScalarProperty Name="Wishlist_Id" ColumnName="Wishlist_Id" />
           <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Wishlist_Id" ColumnName="Wishlist_Id" />
           <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="incQty" FunctionName="MiniProject_ShopModel.Store.incQty" />
     <FunctionImportMapping FunctionImportName="sp_GetAllCategoryfromdb" FunctionName="MiniProject_ShopModel.Store.sp_GetAllCategoryfromdb">
       <ResultMapping>
         <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result">
@@ -198,5 +218,38 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserDetails" FunctionName="MiniProject_ShopModel.Store.GetUserDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetUserDetails_Result">
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+          <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+          <ScalarProperty Name="User_Address" ColumnName="User_Address" />
+          <ScalarProperty Name="User_City" ColumnName="User_City" />
+          <ScalarProperty Name="User_Country" ColumnName="User_Country" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getOrders" FunctionName="MiniProject_ShopModel.Store.sp_getOrders">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_getOrders_Result">
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Prod_Image" ColumnName="Prod_Image" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_getOrdersfromCart" FunctionName="MiniProject_ShopModel.Store.sp_getOrdersfromCart">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MiniProject_ShopModel.sp_getOrdersfromCart_Result">
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_ins_order" FunctionName="MiniProject_ShopModel.Store.sp_ins_order" />
   </EntityContainerMapping>
 </Mapping>

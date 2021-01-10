@@ -5,42 +5,21 @@ body {
   overflow-x: hidden; }
 
 img {
-  max-width: 100%; }
+  max-width: 100%;
+ }
 
 .preview {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column; }
-  @media screen and (max-width: 996px) {
-    .preview {
-      margin-bottom: 20px; } }
 
-.preview-pic {
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1; }
-
-.preview-thumbnail.nav-tabs {
-  border: none;
-  margin-top: 15px; }
-  .preview-thumbnail.nav-tabs li {
-    width: 18%;
-    margin-right: 2.5%; }
-    .preview-thumbnail.nav-tabs li img {
-      max-width: 100%;
-      display: block; }
-    .preview-thumbnail.nav-tabs li a {
-      padding: 0;
-      margin: 0; }
-    .preview-thumbnail.nav-tabs li:last-of-type {
-      margin-right: 0; }
 
 .tab-content {
   overflow: hidden; }
@@ -53,9 +32,10 @@ img {
 
 .card {
   margin-top: 50px;
-  background: #eee;
-  padding: 3em;
-  line-height: 1.5em; }
+  background: #e6f0f5;
+  /* line-height: 1.5em; */
+  padding: 50px;
+margin-bottom:50px ;}
 
 @media screen and (min-width: 997px) {
   .wrapper {
@@ -162,53 +142,10 @@ img {
     -webkit-transform: scale(1);
             transform: scale(1); } }
 
-/*# sourceMappingURL=style.css.map */
 
 .xzoom-gallery {
   margin-top: 10px;
   margin-left:10px;
 }
 
-/*
---------------------------------------------- */
-.container {
-  height: 50rem;
-  width: 90rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(51, 51, 51, .2);
-  display: flex;
-  margin: 10rem auto;
-  overflow: hidden;
-}
-.container .image-container {
-  width: 50%;
-}
-.container .image-container .big-image {
-  height: 70%;
-  width: 100%;
-  padding: 1rem;
-}
-.container .image-container .big-image img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  box-shadow: 0 0.5rem 1rem rgba(51, 51, 51, .2);
-}
-.container .image-container .small-image {
-  height: 30%;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-}
-.container .image-container .small-image img {
-  height: 13rem;
-  width: 13rem;
-  object-fit: cover;
-  cursor: pointer;
-  box-shadow: 0 0.5rem 1rem rgba(51, 51, 51, .2);
-  border: 0.1rem solid #fff;
-}
-.container .content {
-  width: 50%;
-}
-/* ================================================ */
+

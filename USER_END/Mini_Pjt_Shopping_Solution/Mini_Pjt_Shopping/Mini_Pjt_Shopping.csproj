@@ -116,6 +116,7 @@
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -126,7 +127,13 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetCartItems_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetCart_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetUserDetails_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetWishItem_Result.cs">
@@ -166,6 +173,12 @@
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_GetOnePdtfromdb_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getOrdersfromCart_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getOrders_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_PdtsOfOneCategoryfromdb_Result.cs">

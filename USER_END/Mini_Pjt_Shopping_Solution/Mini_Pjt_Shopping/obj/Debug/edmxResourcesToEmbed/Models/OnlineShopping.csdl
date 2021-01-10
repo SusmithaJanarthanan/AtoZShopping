@@ -226,7 +226,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="MiniProject_ShopEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="MiniProject_ShopEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Carts" EntityType="Self.Cart" />
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -285,7 +285,16 @@
       <Parameter Name="userid" Mode="In" Type="Int32" />
       <Parameter Name="prodid" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="CalTotal" ReturnType="Collection(Decimal)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="decQty">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="GetCart" ReturnType="Collection(MiniProject_ShopModel.GetCart_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetCartItems" ReturnType="Collection(MiniProject_ShopModel.GetCartItems_Result)">
       <Parameter Name="userid" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="GetWishItem" ReturnType="Collection(MiniProject_ShopModel.GetWishItem_Result)">
@@ -293,6 +302,9 @@
     </FunctionImport>
     <FunctionImport Name="GetWishlist" ReturnType="Collection(MiniProject_ShopModel.GetWishlist_Result)">
       <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="incQty">
+      <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_GetAllCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllCategoryfromdb_Result)" />
     <FunctionImport Name="sp_GetAllPdtfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_GetAllPdtfromdb_Result)" />
@@ -305,11 +317,33 @@
     <FunctionImport Name="sp_PdtsOfOneCategoryfromdb" ReturnType="Collection(MiniProject_ShopModel.sp_PdtsOfOneCategoryfromdb_Result)">
       <Parameter Name="cat_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GetUserDetails" ReturnType="Collection(MiniProject_ShopModel.GetUserDetails_Result)">
+      <Parameter Name="uid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getOrders" ReturnType="Collection(MiniProject_ShopModel.sp_getOrders_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_getOrdersfromCart" ReturnType="Collection(MiniProject_ShopModel.sp_getOrdersfromCart_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_ins_order">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCart_Result">
     <Property Type="Int32" Name="Cart_Id" Nullable="false" />
     <Property Type="Int32" Name="User_Id" Nullable="true" />
     <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+  </ComplexType>
+  <ComplexType Name="GetCartItems_Result">
+    <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+    <Property Type="Int32" Name="User_Id" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" />
     <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
     <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
   </ComplexType>
@@ -325,9 +359,12 @@
     <Property Type="Int32" Name="Retail_Id" Nullable="true" />
   </ComplexType>
   <ComplexType Name="GetWishlist_Result">
-    <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
     <Property Type="Int32" Name="User_Id" Nullable="true" />
-    <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+    <Property Type="Int32" Name="Wishlist_Id" Nullable="false" />
+    <Property Type="Int32" Name="Prod_Id" Nullable="false" />
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
   </ComplexType>
   <ComplexType Name="sp_GetAllCategoryfromdb_Result">
     <Property Type="Int32" Name="Category_Id" Nullable="false" />
@@ -377,5 +414,25 @@
     <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
     <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
     <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserDetails_Result">
+    <Property Type="String" Name="User_Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="User_Email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="User_Phone" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="User_Address" Nullable="true" />
+    <Property Type="String" Name="User_City" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="User_Country" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="sp_getOrders_Result">
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="String" Name="Prod_Image" Nullable="true" />
+    <Property Type="Int32" Name="Order_Id" Nullable="false" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getOrdersfromCart_Result">
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Cart_Id" Nullable="false" />
   </ComplexType>
 </Schema>

@@ -13,31 +13,27 @@
     </div>
     <div *ngIf="name==='' else elseBlock" >
     <!-- <a  [routerLink]="name===''? ['/Login'] : ['']" >{{name===""?"Login":name}}</a>&nbsp; -->
-    <a  [routerLink]=" ['/Login']" >Login</a>&nbsp;
+    <a  [routerLink]=" ['/Login']" >Login</a>&nbsp;&nbsp;
     <a routerLink="SignUp">Sign up</a>
     </div>
     <ng-template #elseBlock>
-      <a [routerLink]="['']" >{{name}}</a>&nbsp;
-      <a href="#">Your Orders</a>
-      <a routerLink="Home" (click)="logout()">Logout</a>
+      <a style="text-decoration: none;" [routerLink]="['/Profile']" ><i class="fa fa-user-o" aria-hidden="true"></i> {{name}}</a>
+      <a style="text-decoration: none;" href="#">My Orders</a>
+      <a style="text-decoration: none;" routerLink="Home" (click)="logout()">Logout</a>
     </ng-template>
   </div>
 </header>
 
-  <div style="padding: 10px;background-color:#e6f0f5 ;">
+  <div style="padding:10px;background-color:#e6f0f5 ;">
     <ul >
-      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Home">Home</a></li>
-      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Products">Products</a></li>
-      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" [routerLink]="['Cart','2']">Cart</a></li>
-      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" [routerLink]="['Wishlist',id]">Wishlist</a></li>
-      <li  style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;" routerLink="Home">Compare</a></li>
-      <li  style="display: inline;padding:10px;"><app-navbar></app-navbar></li>
+      <li class="lists" style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;color: rgb(56, 109, 224);font-size: 12px;" routerLink="Home">Home</a></li>
+      <li class="lists" style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;color: rgb(56, 109, 224);font-size: 12px;" routerLink="Products">Products</a></li>
+      <li class="lists" style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;color: rgb(56, 109, 224);font-size: 12px;" [routerLink]="['Cart',id]">Cart</a></li>
+      <li class="lists" style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;color: rgb(56, 109, 224);font-size: 12px;" [routerLink]="['Wishlist',id]">Wishlist</a></li>
+      <li class="lists" style="display: inline;padding:10px;"><a class="linki" style="text-decoration: none;color: rgb(56, 109, 224);font-size: 12px;" routerLink="Home">Compare</a></li>
+      <li class="lists" style="display: inline;padding:10px;"><app-navbar class="linki"></app-navbar></li>
     </ul>
     </div>
-
-
-
-
 
 <router-outlet></router-outlet>
 

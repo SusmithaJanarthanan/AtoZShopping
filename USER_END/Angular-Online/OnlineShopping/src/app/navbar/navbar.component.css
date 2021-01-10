@@ -1,9 +1,9 @@
-.dropbtn {
-  background-color: #4CAF50;
- color: white;
- padding: 16px;
- font-size: 16px;
- border: none;
+.buttn {
+color: rgb(56, 109, 224);
+padding: 10px;
+font-size: 12px;
+border: none;
+background-color: #efefef;
 }
 
 .dropdown {
@@ -14,25 +14,29 @@
 .dropdown-content {
  display: none;
  position: absolute;
-  background-color: #f1f1f1;
- min-width: 160px;
+ background-color: #f1f1f1;
+ min-width: 200px;
  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
  z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn
-{background-color: #3e8e41;}
+.dropdown:hover .buttn
+{background-color: rgb(175, 209, 240);}
 
-/* button {
-background: none!important;
+.dropbtn {
 border: none;
-padding: 0!important;
-/*optional*/
-/* font-family: arial, sans-serif; */
-/*input has OS specific font-family*/
-/* color: #069;
-text-decoration: underline;
+font-family: arial, sans-serif;
+ color: #069;
 cursor: pointer;
-} */
+}
+
+.btn{
+background-color: #efefef;
+}
+
+.bttn:hover{
+  background-color: rgb(69, 156, 238);
+}
+

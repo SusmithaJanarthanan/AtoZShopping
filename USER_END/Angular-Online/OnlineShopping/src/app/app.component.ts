@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Users } from './models/user.model';
@@ -17,18 +17,24 @@ export class AppComponent implements OnInit {
   id:any;
   constructor(private cookieservice:CookieService,private authservice:authService,private router:Router)
   {
-     this.name=this.cookieservice.get('username');
-     this.id=this.cookieservice.get('userid');
+    //  this.name=this.cookieservice.get('username');
+    //  this.id=this.cookieservice.get('userid');
     // this.id=this.authservice.userid;
      console.log(this.id);
-     console.log("im called");
      console.log(this.authservice.username);
   }
+
 ngOnInit(): void {
+     this.name=this.cookieservice.get('username');
+     this.id=this.cookieservice.get('userid');
+
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
 
 }
+
+
+
 ngAfterViewInit(): void {
 }
 logout(): void {
