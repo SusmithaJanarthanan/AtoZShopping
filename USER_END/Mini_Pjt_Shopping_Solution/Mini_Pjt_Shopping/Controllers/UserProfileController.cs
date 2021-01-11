@@ -15,6 +15,7 @@ namespace Mini_Pjt_Shopping.Controllers
         MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
 
         [HttpGet]
+        [ActionName("MyProfile")]
         public HttpResponseMessage GetUserDetails(int id)
         {
             List<User> details = new List<User>();

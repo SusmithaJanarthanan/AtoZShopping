@@ -33,7 +33,7 @@ check:any;
       console.log(data);
       if(this.wishlist.length<=0)
       {
-        console.log("Hiii");
+
         this.check=1;
       }
     })
@@ -43,7 +43,7 @@ check:any;
   {
     this.wish.User_Id=this.id;
     this.wish.Prod_Id=item.Prod_Id;
-    this.wishService.addToWishlist(this.wish).subscribe(data=>console.log(data));
+    this.wishService.addToWishlist(this.wish).subscribe(data=>alert(data));
   }
 
   addToCart(item:any)
@@ -52,7 +52,7 @@ check:any;
     this.cart.Prod_Id=item.Prod_Id;
     this.cart.Prod_Price=item.Prod_Price;
     this.cart.Prod_Quantity=item.Prod_Quantity;
-    this.cartService.addToCart(this.cart).subscribe(data=>console.log(data));
+    this.cartService.addToCart(this.cart).subscribe(data=>alert(data));
   }
   removeFromWishlist(wish1:Wishlist)
   {

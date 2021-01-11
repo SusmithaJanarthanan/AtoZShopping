@@ -137,7 +137,7 @@
         <div class="form-group" style="box-sizing:border-box;width:175px">
         <label for="cvv" class="required">CVV</label>
         <input required #cvv="ngModel" type="password" [(ngModel)]="checkout.cvv" class="form-control" id="cvv"
-        name="cvv" placeholder="Enter CVV">
+        name="cvv" maxlength="3" placeholder="Enter CVV">
         <div *ngIf="cvv.invalid && (cvv.touched || cvv.dirty)" class="error">
           CVV is required</div>
         </div>

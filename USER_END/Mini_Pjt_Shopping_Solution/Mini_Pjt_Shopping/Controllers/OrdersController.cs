@@ -14,6 +14,7 @@ namespace Mini_Pjt_Shopping.Controllers
     public class OrdersController : ApiController
     {
         MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
+        [ActionName("GetAllOrders")]
         public HttpResponseMessage GetOrders(int id)
         {
             List<Order> orders = new List<Order>();

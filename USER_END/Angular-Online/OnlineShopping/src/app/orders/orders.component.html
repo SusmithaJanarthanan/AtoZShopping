@@ -1,0 +1,24 @@
+<p style="text-align: center;">My Orders</p>
+
+<div style="background-color: lightsalmon;">
+  <div *ngIf='order.length===0' else elseBlock>
+  <p>NO Orders</p>
+    </div>
+    <div #elseBlock *ngFor="let item of order">
+        <div class="row" style="width: 500px;">
+            <div style="margin-top: 20px;margin-left: 30px; width: 300px;font-style: oblique;">
+            Order Id:{{item.Order_Id}}
+            <br>
+            Product Name:{{item.Prod_Name}}
+            <br>
+            Product Price:{{item.Prod_Price}}
+            <br>
+            Quantity:{{item.Prod_Quantity}}
+            <br>
+            Image:{{item.Prod_Image}}
+            <br>
+            <br>
+            </div>
+        </div>
+    </div>
+</div>

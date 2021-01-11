@@ -10,6 +10,6 @@ export class MyProfileService
   }
   public getMyProfile(id:number)
   {
-    return this.getHttp.get("http://localhost:61535/api/userprofile/"+id);
+    return this.getHttp.get("http://localhost:61535/api/userprofile/MyProfile/"+id);
   }
 }

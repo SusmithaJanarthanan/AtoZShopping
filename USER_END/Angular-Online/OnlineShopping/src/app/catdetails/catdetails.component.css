@@ -69,6 +69,31 @@ body {
 }
 
 
+.search1{
+  padding-left: 10px;
+  margin-left:80px;
+	width: 60%;
+   margin-bottom: 20px;
+   background: #e6f0f5;
+}
+.search
+{
+width:60%;
+outline: none;
+background: none;
+border: none;
+height: 35px;
+}
+.search2 {
+  margin-left:100px;
+	height: 46px;
+	outline: none;
+	background: none;
+	border: none;
+}
+
+
+
 /*
 Error Page */
 .error-404 {

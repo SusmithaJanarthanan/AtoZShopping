@@ -52,7 +52,7 @@
 
       </div>
       <br>
-      <div *ngIf="cartTotal==0; else elseBlock"><h2>Your Cart is Empty Go shop</h2></div>
+      <div *ngIf="cartTotal==0; else elseBlock"><h2>Your Cart is Empty  <a [routerLink]="['/Products']" routerLinkActive="active">Continue Shopping</a></h2></div>
 
       <ng-template #elseBlock>
       <div class="col-xl-3 col-lg-4 col-md-5 totals">

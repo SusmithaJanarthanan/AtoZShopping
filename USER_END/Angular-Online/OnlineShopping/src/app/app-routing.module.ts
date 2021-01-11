@@ -6,6 +6,8 @@ import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
 import { GetallpdtComponent } from './getallpdt/getallpdt.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { OrdersComponent } from './orders/orders.component';
 import { PdtdetailComponent } from './pdtdetail/pdtdetail.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ThankyouComponent } from './thankyou/thankyou.component';
@@ -23,9 +25,11 @@ const routes: Routes = [
   {path:"Cart/:id",component:CartComponent,canActivate: [AuthGuardService] },
   {path:"SignUp",component:UserregisterComponent},
   {path:"Login",component:LoginComponent},
-  {path:"Checkout/:id1",component:CheckoutpageComponent},
+  {path:"Checkout/:id1",component:CheckoutpageComponent,canActivate: [AuthGuardService]},
   {path:"",component:HomeComponent},
-  {path:"thankyou",component:ThankyouComponent}
+  {path:"thankyou",component:ThankyouComponent,canActivate: [AuthGuardService]},
+  {path:"Orders/:id",component:OrdersComponent,canActivate: [AuthGuardService]},
+  {path:"MyProfile/:id",component:MyprofileComponent,canActivate: [AuthGuardService]}
 ];
 
 @NgModule({

@@ -32,6 +32,15 @@ ngOnInit(): void {
   //Add 'implements OnInit' to the class.
 
 }
+myorders(id:number)
+{
+  this.router.navigate(["Orders",id]);
+}
+
+myprofile(id:number)
+{
+  this.router.navigate(["MyProfile",id]);
+}
 
 
 

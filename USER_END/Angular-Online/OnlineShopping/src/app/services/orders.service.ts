@@ -10,6 +10,6 @@ export class OrderService
   }
   public getOrders(id:number)
   {
-    return this.getHttp.get("http://localhost:61535/api/orders/"+id);
+    return this.getHttp.get("http://localhost:61535/api/Orders/GetAllOrders/"+id);
   }
 }

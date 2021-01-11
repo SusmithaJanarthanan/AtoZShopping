@@ -23,14 +23,14 @@
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" name="password" id="password" class="form-control" required
-    [(ngModel)]="user.User_Password" #password="ngModel" appComparePassword="password2" parent=true>
+    [(ngModel)]="user.User_Password" #password="ngModel" parent=true>
     <div [hidden]="password.valid || password.untouched"
         class="alert alert-danger">
     Password is required
     </div>
 </div>
 
-<div class="form-group">
+<!-- <div class="form-group">
     <label for="password2">Confirm Password</label>
     <input type="password" name="password2" id="password2" class="form-control" required
     [(ngModel)]="dummy.retype" #password2="ngModel" appComparePassword="password">
@@ -39,7 +39,7 @@
     Confirm Password is required
     </div>
     <div *ngIf="password2.dirty && ((password.errors && password.errors.compare) || (password2.errors && password2.errors.compare))" class="alert alert-danger">Doesn't match</div>
-</div>
+</div> -->
 
 
     <div class="form-group">

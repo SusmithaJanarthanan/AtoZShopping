@@ -36,6 +36,9 @@ import { CheckoutService } from './services/checkout.service';
 import { MyProfileService } from './services/myprofile.service';
 import { OrderService } from './services/orders.service';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { OrdersComponent } from './orders/orders.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { SearchPipe } from './search.pipe';
 
 
 
@@ -58,7 +61,10 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
     NameheaderComponent,
     LoginComponent,
     CheckoutpageComponent,
-    ThankyouComponent
+    ThankyouComponent,
+    OrdersComponent,
+    MyprofileComponent,
+    SearchPipe
 
     ],
   imports: [

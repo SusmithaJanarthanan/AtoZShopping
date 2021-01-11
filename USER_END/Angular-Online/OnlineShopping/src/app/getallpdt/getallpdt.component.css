@@ -107,6 +107,53 @@ opacity: 0.5;
 pointer-events:unset;
 cursor: not-allowed;
 }
+.add-to-cart
+{
+  pointer-events: auto;
+}
 
 
+
+
+/* form.search {
+	width: 100%;
+	background: #fff;
+}
+
+form.search input, form.search button {
+	height: 46px;
+	outline: none;
+	background: none;
+	border: none;
+}
+
+form.search input {
+	width: 90%;
+	padding: 0rem 1rem;
+}
+
+form */
+
+.search1{
+  padding-left: 10px;
+  margin-left:80px;
+	width: 60%;
+   margin-bottom: 20px;
+   background: #e6f0f5;
+}
+.search
+{
+width:60%;
+outline: none;
+background: none;
+border: none;
+height: 35px;
+}
+.search2 {
+  margin-left:100px;
+	height: 46px;
+	outline: none;
+	background: none;
+	border: none;
+}
 

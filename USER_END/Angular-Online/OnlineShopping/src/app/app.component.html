@@ -7,8 +7,8 @@
     <div class="menu-responsive">
       <label for="menu-toggle">Close</label>
       <form action="" class="search">
-        <input type="search" placeholder="search store" />
-        <button><span class="span ti-search"></span></button>
+        <!-- <input type="search" placeholder="search store" />
+        <button><span class="span ti-search"></span></button> -->
       </form>
     </div>
     <div *ngIf="name==='' else elseBlock" >
@@ -17,8 +17,8 @@
     <a routerLink="SignUp">Sign up</a>
     </div>
     <ng-template #elseBlock>
-      <a style="text-decoration: none;" [routerLink]="['/Profile']" ><i class="fa fa-user-o" aria-hidden="true"></i> {{name}}</a>
-      <a style="text-decoration: none;" href="#">My Orders</a>
+      <a style="text-decoration: none;"  (click)="myprofile(this.id)" ><i class="fa fa-user-o" aria-hidden="true"></i> {{name}}</a>
+      <a style="text-decoration: none;" (click)="myorders(this.id)">My Orders</a>
       <a style="text-decoration: none;" routerLink="Home" (click)="logout()">Logout</a>
     </ng-template>
   </div>

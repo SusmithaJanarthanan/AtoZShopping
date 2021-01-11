@@ -16,7 +16,7 @@ export class CheckoutService
 
   public updateOrdersDeleteCart(id:number,checkout:CheckOut)
   {
-    return this.putHttp.put("http://localhost:61535/api/CheckOut/InsInToOrd/"+id,checkout);
+    return this.getHttp.put("http://localhost:61535/api/CheckOut/InsInToOrd/"+id,checkout);
   }
 
 }

@@ -28,6 +28,9 @@ msg:any;
 Min="";
 Max="";
 check:any;
+name="";
+Name="";
+
 
   constructor(private myRoute:ActivatedRoute,private ProductService:PdtService,private route:Router,private wishService:WishService,private cookieservice:CookieService,private cartservice:CartService)
   {
@@ -37,7 +40,17 @@ check:any;
   }
   notallow()
 {
-     alert('Login Pls');
+     alert('Please Login');
+}
+OnSearch()
+{
+  this.name=this.Name;
+}
+OnClear()
+{
+  this.Name='';
+  this.name='';
+
 }
 
   ngOnInit() {
@@ -62,7 +75,7 @@ check:any;
   {
   if(this.check==='')
   {
-  alert("login pls")
+  alert("Please Login!!")
   }
   else
   {
@@ -70,7 +83,7 @@ check:any;
   this.wish.Prod_Id=id;
   console.log(this.wish.Prod_Id);
   console.log(this.wish);
-  this.wishService.addToWishlist(this.wish).subscribe(data=>console.log(data));
+  this.wishService.addToWishlist(this.wish).subscribe(data=>alert(data));
   }
 }
 
@@ -78,7 +91,7 @@ addToCart(item:any)
   {
     if(this.check==='')
   {
-  alert("login pls")
+  alert("Please Login!!")
   }
   else
   {
@@ -86,7 +99,7 @@ addToCart(item:any)
     this.cart.Prod_Id=item.Prod_Id;
     this.cart.Prod_Price=item.Prod_Price;
     this.cart.Prod_Quantity=item.Prod_Quantity;
-    this.cartservice.addToCart(this.cart).subscribe(data=>console.log(data));
+    this.cartservice.addToCart(this.cart).subscribe(data=>alert(data));
   }
 }
 

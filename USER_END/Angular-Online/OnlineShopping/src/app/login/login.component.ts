@@ -51,10 +51,14 @@ Password="";
       this.cookieService.set('userid',this.user1.User_Id);
 
       this.authservice.isLogged=true;
-      window.location.reload();
+      this.refre();
       this.router.navigate(['/Products']);
   }
-
+refre()
+{
+alert("LoggedIn Succesfully");
+window.location.reload();
+}
 
   Sign_Up()
   {

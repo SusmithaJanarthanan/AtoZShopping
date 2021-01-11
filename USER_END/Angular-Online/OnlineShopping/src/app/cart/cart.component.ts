@@ -49,6 +49,7 @@ changeQty(id:number ,q:number)
 if(q==1)
 {
   this.cartService.incQty(id,q).subscribe(data=>console.log(data));
+  // alert("hiii")
   window.location.reload();
 }
 else
