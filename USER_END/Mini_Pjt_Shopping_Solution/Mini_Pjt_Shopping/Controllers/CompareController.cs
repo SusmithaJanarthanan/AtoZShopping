@@ -12,7 +12,7 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class CompareController : ApiController
     {
-        MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
+        Final_Shopping_dbEntities entities = new Final_Shopping_dbEntities();
         [HttpGet]
         [ActionName("GetCompList")]
         public HttpResponseMessage GetComparelist(int id)

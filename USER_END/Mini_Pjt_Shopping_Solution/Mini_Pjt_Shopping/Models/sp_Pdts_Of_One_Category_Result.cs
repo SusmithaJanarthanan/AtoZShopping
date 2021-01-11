@@ -10,19 +10,18 @@
 namespace Mini_Pjt_Shopping.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Update_Products
+    public partial class sp_Pdts_Of_One_Category_Result
     {
-        public int Update_Id { get; set; }
-        public Nullable<int> Prod_Id { get; set; }
+        public int Prod_Id { get; set; }
         public string Prod_Name { get; set; }
+        public string Prod_Image { get; set; }
         public Nullable<decimal> Prod_Price { get; set; }
+        public string Prod_Description { get; set; }
         public Nullable<int> Prod_Quantity { get; set; }
-        public string Update_Status { get; set; }
-        public Nullable<int> Retail_Id { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual Retailer Retailer { get; set; }
+        public string Prod_Status { get; set; }
+        public string Category_Name { get; set; }
+        public string Retail_Name { get; set; }
+        public Nullable<long> row_num { get; set; }
     }
 }

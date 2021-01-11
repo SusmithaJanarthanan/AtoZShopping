@@ -10,15 +10,14 @@
 namespace Mini_Pjt_Shopping.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Wishlist
+    public partial class retailer_revdetails_Result
     {
-        public int Wishlist_Id { get; set; }
-        public Nullable<int> User_Id { get; set; }
-        public Nullable<int> Prod_Id { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual User User { get; set; }
+        public Nullable<int> Retail_id { get; set; }
+        public Nullable<int> Prod_id { get; set; }
+        public string Prod_Name { get; set; }
+        public Nullable<decimal> Prod_Price { get; set; }
+        public Nullable<int> Prod_Quantity { get; set; }
+        public Nullable<decimal> Total { get; set; }
     }
 }

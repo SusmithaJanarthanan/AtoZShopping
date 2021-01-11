@@ -12,7 +12,7 @@ namespace Mini_Pjt_Shopping.Controllers
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class UserController : ApiController
     {
-        MiniProject_ShopEntities2 entities = new MiniProject_ShopEntities2();
+        Final_Shopping_dbEntities entities = new Final_Shopping_dbEntities();
 
         [HttpGet]
         [Route("api/User/all")]

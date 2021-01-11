@@ -59,8 +59,8 @@
           <div class="product-grid2" [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}">
             <div class="product-image2">
                 <a [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':showDetails(item.Prod_Id)">
-                    <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
-                    <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
+                    <img class="pic-1" src="{{item.Prod_Image}}" style="height:250px;">
+                    <img class="pic-2" src="{{item.Prod_Image}}" style="height:250px;">
                 </a>
                 <ul class="social">
                     <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToCompare(item)"  data-tip="Add to Compare"><i class="fa fa-exchange"></i></a></li>

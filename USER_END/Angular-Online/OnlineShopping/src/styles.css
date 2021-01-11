@@ -3,14 +3,15 @@
 
 
 /* @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap'); */
-/*
+
   * {
 	font-family: 'Raleway', sans-serif;
 	box-sizing: border-box;
 	text-decoration: none;
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
+  margin: 0;
+  font-size: 15px;
 }
 
 body {
@@ -87,4 +88,4 @@ header a {
 	font-weight: 600;
 }
 
- */
+
