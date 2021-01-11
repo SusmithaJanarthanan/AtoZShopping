@@ -1,0 +1,22 @@
+<div *ngIf=list1>
+  <div *ngFor="let item of list1">
+   <p>
+     {{item.Prod_Id}}
+   </p>
+   <p>
+    {{item.Prod_Name}}
+  </p>
+  <p>
+    {{item.Prod_Image}}
+  </p>
+  <p>
+    {{item.Prod_Description}}
+  </p>
+  <p>
+    {{item.Prod_Price}}
+  </p>
+  <button (click)=remov(item.Prod_Id)>Remove</button>
+  </div>
+
+</div>
+

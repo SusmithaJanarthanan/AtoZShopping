@@ -1,5 +1,4 @@
 <body>
-    <div style="text-align: center; font-weight: 1000;font-size:50px;font-family: serif;">Online Shopping</div>
     <div style="text-align: center;font-size: large;"><i><b>Check Out Page</b></i></div>
 <div class="row">
 
@@ -51,15 +50,15 @@
         <div class="form-group">
         <label for="city" class="required">City</label>
         <input required #city="ngModel" type="text" [(ngModel)]="checkout.city" class="form-control" id="city"
-        name="city" placeholder="Enter Zip Code">
+        name="city" placeholder="Enter City">
         <div *ngIf="city.invalid && (city.touched || city.dirty)" class="error">
           City is required</div>
         </div>
 
         <div class="form-group">
         <label for="state" class="required">State</label>
-        <input required #state="ngModel" type="text" [(ngModel)]="checkout.zip" class="form-control" id="state"
-        name="state" placeholder="Enter Zip Code">
+        <input required #state="ngModel" type="text" [(ngModel)]="checkout.state" class="form-control" id="state"
+        name="state" placeholder="Enter State">
         <div *ngIf="state.invalid && (state.touched || state.dirty)" class="error">
           State is required</div>
         </div>
@@ -133,7 +132,7 @@
         </div>
 
         </div>
-
+        &nbsp;
         <div class="form-group" style="box-sizing:border-box;width:175px">
         <label for="cvv" class="required">CVV</label>
         <input required #cvv="ngModel" type="password" [(ngModel)]="checkout.cvv" class="form-control" id="cvv"
@@ -147,7 +146,7 @@
 
         <div class="form-group">
           <div >
-          <button (click)="OnSubmit()" type="submit" class="btn btn-success">Check Out</button>
+          <button (click)="OnSubmit()" type="submit" class="btn btn-success" [disabled]='!checkoutForm.valid'>Check Out</button>
         </div>
         </div>
 
@@ -157,22 +156,23 @@
 </div>
 </div>
 
+<div *ngIf="order">
 <div class="col-25">
     <div class="container">
       <h4>Cart
         <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
-
         </span>
       </h4>
       <div *ngFor="let item of order">
-      <p><a href="#">{{item.Prod_Name}}</a> <span class="price">{{item.Prod_Price}}</span></p>
-
+      <p><a >{{item.Prod_Name}}</a> <span class="price">{{item.Prod_Price}}</span></p>
+      <p> Tax   &nbsp;&nbsp; &nbsp;{{total1*1.05-total1}}</p>
       <hr>
       </div>
       <p>Total: <span class="price" style="color:black"><b> {{total1*1.05}}</b></span></p>
     </div>
   </div>
+</div>
 </div>
 </body>
 

@@ -6,6 +6,7 @@ import { Cart } from '../models/cart.model';
 import { Wishlist } from '../models/wishlist.model';
 import { CartService } from '../services/cart.service';
 import { WishService } from '../services/wish.service';
+import { ComparepdtService } from '../services/comparepdt.service';
 
 @Component({
   selector: 'app-catdetails',
@@ -32,7 +33,7 @@ name="";
 Name="";
 
 
-  constructor(private myRoute:ActivatedRoute,private ProductService:PdtService,private route:Router,private wishService:WishService,private cookieservice:CookieService,private cartservice:CartService)
+  constructor(private myRoute:ActivatedRoute,private ProductService:PdtService,private CompareProd:ComparepdtService,private route:Router,private wishService:WishService,private cookieservice:CookieService,private cartservice:CartService)
   {
     this.wish=new Wishlist();
     this.cart=new Cart();
@@ -51,6 +52,13 @@ OnClear()
   this.Name='';
   this.name='';
 
+}
+addToCompare(item:any)
+{
+  console.log("Product chosen"+item);
+  // localStorage.setItem('dataSource', item);
+   this.CompareProd.list.push(item);
+  console.log(this.CompareProd.list);
 }
 
   ngOnInit() {

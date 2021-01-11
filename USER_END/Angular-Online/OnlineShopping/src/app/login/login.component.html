@@ -26,11 +26,14 @@
          </div>
      </div>
 
-     <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">  Login  </button>
+        <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">  Login  </button>
       &nbsp;
       &nbsp;
       &nbsp;
+
      <button class="btn btn-success" (click)="Sign_Up()">  Sign-Up  </button>
+
+     <a [routerLink]="['/forgetpassword']" routerLinkActive="active" >Forget Password?</a>
   </form>
   </div>
 </div>

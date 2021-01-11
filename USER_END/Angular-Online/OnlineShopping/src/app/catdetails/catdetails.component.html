@@ -63,7 +63,7 @@
                     <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo3/images/img-6.jpeg">
                 </a>
                 <ul class="social">
-                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':''"  data-tip="Add to Compare"><i class="fa fa-exchange"></i></a></li>
+                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToCompare(item)"  data-tip="Add to Compare"><i class="fa fa-exchange"></i></a></li>
                     <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"    (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToWishlist(item.Prod_Id)"  data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 
                 </ul>

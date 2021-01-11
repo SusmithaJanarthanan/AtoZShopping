@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GetallpdtComponent } from './getallpdt/getallpdt.component';
 import { PdtService } from './services/pdts.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule,FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PdtdetailComponent } from './pdtdetail/pdtdetail.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -39,6 +39,11 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
 import { OrdersComponent } from './orders/orders.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { SearchPipe } from './search.pipe';
+import { CompareComponent } from './compare/compare.component';
+import { ComparepdtService } from './services/comparepdt.service';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
+import { ForgetPasswordService } from './services/forgetpassword.service';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 
@@ -64,7 +69,10 @@ import { SearchPipe } from './search.pipe';
     ThankyouComponent,
     OrdersComponent,
     MyprofileComponent,
-    SearchPipe
+    SearchPipe,
+    CompareComponent,
+    ForgetpasswordComponent,
+    ResetpasswordComponent
 
     ],
   imports: [
@@ -74,9 +82,10 @@ import { SearchPipe } from './search.pipe';
     HttpClientModule,
     NgxImageZoomModule,
     NgxPaginationModule,
-    PinchZoomModule
+    PinchZoomModule,
+    ReactiveFormsModule
   ],
-  providers: [PdtService,WishService,CartService,UserService,authService,CookieService,AuthGuardService,CheckoutService,MyProfileService,OrderService],
+  providers: [PdtService,WishService,CartService,ForgetPasswordService,UserService,authService,ComparepdtService,CookieService,AuthGuardService,CheckoutService,MyProfileService,OrderService],
   bootstrap: [AppComponent]
 })
 
