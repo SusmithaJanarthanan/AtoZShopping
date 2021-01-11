@@ -14,6 +14,7 @@ export class WishlistComponent implements OnInit {
 wishlist:any;
 wish:Wishlist;
 id?:any;
+id1?:any;
 cart:Cart;
 item:any;
 check:any;
@@ -45,7 +46,11 @@ check:any;
     this.wish.Prod_Id=item.Prod_Id;
     this.wishService.addToWishlist(this.wish).subscribe(data=>alert(data));
   }
-
+  showDetails(id1:number)
+  {
+   console.log("hi"+id1)
+   this.route.navigate(["Details",id1]);
+  }
   addToCart(item:any)
   {
     this.cart.User_Id=this.id;

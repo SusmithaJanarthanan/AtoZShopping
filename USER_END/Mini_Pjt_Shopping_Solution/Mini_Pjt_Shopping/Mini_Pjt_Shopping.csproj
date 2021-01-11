@@ -112,6 +112,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CheckOutController.cs" />
+    <Compile Include="Controllers\CompareController.cs" />
     <Compile Include="Controllers\GenerateEmailController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -128,10 +129,16 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Compare.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetCartItems_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetCart_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GetComparelist_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetUserDetails_Result.cs">

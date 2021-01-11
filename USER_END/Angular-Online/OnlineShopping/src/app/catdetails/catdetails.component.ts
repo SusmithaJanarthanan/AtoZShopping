@@ -7,6 +7,8 @@ import { Wishlist } from '../models/wishlist.model';
 import { CartService } from '../services/cart.service';
 import { WishService } from '../services/wish.service';
 import { ComparepdtService } from '../services/comparepdt.service';
+import { Compare } from '../models/compare.model';
+import { CompareService } from '../services/compare.service';
 
 @Component({
   selector: 'app-catdetails',
@@ -19,6 +21,7 @@ id?: any;
 category:any;
 wish:Wishlist;
 cart:Cart;
+compareList:Compare;
 private sub:any;
 p:number=1;
 min="";
@@ -33,8 +36,9 @@ name="";
 Name="";
 
 
-  constructor(private myRoute:ActivatedRoute,private ProductService:PdtService,private CompareProd:ComparepdtService,private route:Router,private wishService:WishService,private cookieservice:CookieService,private cartservice:CartService)
+  constructor(private myRoute:ActivatedRoute,private ProductService:PdtService,private CompareProd:ComparepdtService,private route:Router,private wishService:WishService,private cookieservice:CookieService,private cartservice:CartService,private compareService:CompareService)
   {
+    this.compareList=new Compare();
     this.wish=new Wishlist();
     this.cart=new Cart();
     this.check=this.cookieservice.get('userid');
@@ -55,10 +59,17 @@ OnClear()
 }
 addToCompare(item:any)
 {
-  console.log("Product chosen"+item);
-  // localStorage.setItem('dataSource', item);
-   this.CompareProd.list.push(item);
-  console.log(this.CompareProd.list);
+
+  if(this.check==='')
+  {
+  alert("Please Login to continue!!")
+  }
+  else
+  {
+     this.compareList.User_Id=parseInt(this.cookieservice.get('userid'));
+     this.compareList.Prod_Id=item.Prod_Id;
+     this.compareService.addToComparlist(this.compareList).subscribe(data=>alert(data));
+  }
 }
 
   ngOnInit() {

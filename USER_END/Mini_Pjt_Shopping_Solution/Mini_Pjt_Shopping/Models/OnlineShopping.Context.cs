@@ -35,6 +35,7 @@ namespace Mini_Pjt_Shopping.Models
         public virtual DbSet<Update_Products> Update_Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Wishlist> Wishlists { get; set; }
+        public virtual DbSet<Compare> Compares { get; set; }
     
         public virtual int AddTOCart(Nullable<int> userid, Nullable<int> prodid, Nullable<int> prod_qty, Nullable<decimal> prod_price)
         {
@@ -204,6 +205,32 @@ namespace Mini_Pjt_Shopping.Models
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ins_order", idParameter);
+        }
+    
+        public virtual int AddToCompare(Nullable<int> userid, Nullable<int> prodid, Nullable<int> catid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            var prodidParameter = prodid.HasValue ?
+                new ObjectParameter("prodid", prodid) :
+                new ObjectParameter("prodid", typeof(int));
+    
+            var catidParameter = catid.HasValue ?
+                new ObjectParameter("catid", catid) :
+                new ObjectParameter("catid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddToCompare", useridParameter, prodidParameter, catidParameter);
+        }
+    
+        public virtual ObjectResult<GetComparelist_Result> GetComparelist(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetComparelist_Result>("GetComparelist", useridParameter);
         }
     }
 }

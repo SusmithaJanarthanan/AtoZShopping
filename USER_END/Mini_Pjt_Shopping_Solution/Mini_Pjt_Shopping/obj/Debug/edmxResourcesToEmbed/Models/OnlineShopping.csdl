@@ -19,6 +19,7 @@
     <Property Name="Category_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Category_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Products" Relationship="Self.FK__Products__Catego__5165187F" FromRole="Category" ToRole="Products" />
+    <NavigationProperty Name="Compares" Relationship="MiniProject_ShopModel.FK__Compare__Categor__0A688BB1" FromRole="Category" ToRole="Compare" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -53,6 +54,7 @@
     <NavigationProperty Name="Retailer" Relationship="Self.FK__Products__Retail__52593CB8" FromRole="Products" ToRole="Retailers" />
     <NavigationProperty Name="Update_Products" Relationship="Self.FK__Update_Pr__Prod___5535A963" FromRole="Products" ToRole="Update_Products" />
     <NavigationProperty Name="Wishlists" Relationship="Self.FK__Wishlist__Prod_I__5BE2A6F2" FromRole="Products" ToRole="Wishlist" />
+    <NavigationProperty Name="Compares" Relationship="MiniProject_ShopModel.FK__Compare__Prod_Id__09746778" FromRole="Product" ToRole="Compare" />
   </EntityType>
   <EntityType Name="Retailer">
     <Key>
@@ -95,6 +97,7 @@
     <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__User_Id__5224328E" FromRole="Users" ToRole="Cart" />
     <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__User_id__55F4C372" FromRole="Users" ToRole="Orders" />
     <NavigationProperty Name="Wishlists" Relationship="Self.FK__Wishlist__User_I__5AEE82B9" FromRole="Users" ToRole="Wishlist" />
+    <NavigationProperty Name="Compares" Relationship="MiniProject_ShopModel.FK__Compare__User_Id__0880433F" FromRole="User" ToRole="Compare" />
   </EntityType>
   <EntityType Name="Wishlist">
     <Key>
@@ -329,6 +332,27 @@
     <FunctionImport Name="sp_ins_order">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="Compares" EntityType="MiniProject_ShopModel.Compare" />
+    <AssociationSet Name="FK__Compare__Categor__0A688BB1" Association="MiniProject_ShopModel.FK__Compare__Categor__0A688BB1">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Compare" EntitySet="Compares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Compare__Prod_Id__09746778" Association="MiniProject_ShopModel.FK__Compare__Prod_Id__09746778">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Compare" EntitySet="Compares" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Compare__User_Id__0880433F" Association="MiniProject_ShopModel.FK__Compare__User_Id__0880433F">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Compare" EntitySet="Compares" />
+    </AssociationSet>
+    <FunctionImport Name="AddToCompare">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="prodid" Mode="In" Type="Int32" />
+      <Parameter Name="catid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetComparelist" ReturnType="Collection(MiniProject_ShopModel.GetComparelist_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCart_Result">
     <Property Type="Int32" Name="Cart_Id" Nullable="false" />
@@ -434,5 +458,59 @@
     <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
     <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="0" />
     <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Compare">
+    <Key>
+      <PropertyRef Name="Compare_Id" />
+    </Key>
+    <Property Name="Compare_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Id" Type="Int32" />
+    <Property Name="Prod_Id" Type="Int32" />
+    <Property Name="Category_Id" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="MiniProject_ShopModel.FK__Compare__Categor__0A688BB1" FromRole="Compare" ToRole="Category" />
+    <NavigationProperty Name="Product" Relationship="MiniProject_ShopModel.FK__Compare__Prod_Id__09746778" FromRole="Compare" ToRole="Product" />
+    <NavigationProperty Name="User" Relationship="MiniProject_ShopModel.FK__Compare__User_Id__0880433F" FromRole="Compare" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Compare__Categor__0A688BB1">
+    <End Type="MiniProject_ShopModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="MiniProject_ShopModel.Compare" Role="Compare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Category_Id" />
+      </Principal>
+      <Dependent Role="Compare">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Compare__Prod_Id__09746778">
+    <End Type="MiniProject_ShopModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="MiniProject_ShopModel.Compare" Role="Compare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Prod_Id" />
+      </Principal>
+      <Dependent Role="Compare">
+        <PropertyRef Name="Prod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Compare__User_Id__0880433F">
+    <End Type="MiniProject_ShopModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="MiniProject_ShopModel.Compare" Role="Compare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="Compare">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="GetComparelist_Result">
+    <Property Type="Int32" Name="Compare_Id" Nullable="false" />
+    <Property Type="Int32" Name="User_Id" Nullable="true" />
+    <Property Type="Int32" Name="Prod_Id" Nullable="true" />
+    <Property Type="Int32" Name="Category_Id" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GetallpdtComponent } from './getallpdt/getallpdt.component';
 import { PdtService } from './services/pdts.service';
-import {FormsModule,FormGroup, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PdtdetailComponent } from './pdtdetail/pdtdetail.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -44,6 +44,7 @@ import { ComparepdtService } from './services/comparepdt.service';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 import { ForgetPasswordService } from './services/forgetpassword.service';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { CompareService } from './services/compare.service';
 
 
 
@@ -84,8 +85,11 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     NgxPaginationModule,
     PinchZoomModule,
     ReactiveFormsModule
+
+
+
   ],
-  providers: [PdtService,WishService,CartService,ForgetPasswordService,UserService,authService,ComparepdtService,CookieService,AuthGuardService,CheckoutService,MyProfileService,OrderService],
+  providers: [PdtService,WishService,CartService,ForgetPasswordService,UserService,authService,ComparepdtService,CookieService,AuthGuardService,CheckoutService,MyProfileService,OrderService,CompareService],
   bootstrap: [AppComponent]
 })
 

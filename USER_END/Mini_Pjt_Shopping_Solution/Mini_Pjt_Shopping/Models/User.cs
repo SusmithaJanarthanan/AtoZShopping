@@ -22,6 +22,7 @@ namespace Mini_Pjt_Shopping.Models
             this.Carts = new HashSet<Cart>();
             this.Orders = new HashSet<Order>();
             this.Wishlists = new HashSet<Wishlist>();
+            this.Compares = new HashSet<Compare>();
         }
         [DataMember]
         public int User_Id { get; set; }
@@ -46,5 +47,7 @@ namespace Mini_Pjt_Shopping.Models
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Wishlist> Wishlists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Compare> Compares { get; set; }
     }
 }

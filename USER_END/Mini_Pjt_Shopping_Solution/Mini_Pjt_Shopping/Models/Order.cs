@@ -29,6 +29,7 @@ namespace Mini_Pjt_Shopping.Models
         [DataMember]
         public Nullable<int> Retail_id { get; set; }
         [DataMember]
+
         public virtual Product Product { get; set; }
         [DataMember]
         public virtual Retailer Retailer { get; set; }

@@ -28,7 +28,7 @@
 
           <button (click)="addToCart(item)" type="button" class="btn btn-primary btn-sm mr-1 mb-2"><i
               class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
-          <button  type="button" class="btn btn-light btn-sm mr-1 mb-2"><i
+          <button  type="button" (click)="showDetails(item.Prod_Id)" class="btn btn-light btn-sm mr-1 mb-2"><i
               class="fas fa-info-circle pr-2"></i>Details</button>
           <button (click)="removeFromWishlist(item)" type="button" class="btn btn-elegant btn-sm px-3 mb-2 material-tooltip-main"
             data-toggle="tooltip" data-placement="top" title="Remove from wishlist">Remove From Wishlist<i
@@ -38,7 +38,7 @@
 
       </div>
   </div>
-      <!-- Card -->  <div *ngIf="check===1"><h2>Your WishList is Empty Go shop</h2></div>
+      <!-- Card -->  <div *ngIf="check===1"><h2>Your WishList is Empty <a [routerLink]="['/Products']" routerLinkActive="active">Continue Shopping</a></h2></div>
 
     </div>
     <!-- Grid column -->

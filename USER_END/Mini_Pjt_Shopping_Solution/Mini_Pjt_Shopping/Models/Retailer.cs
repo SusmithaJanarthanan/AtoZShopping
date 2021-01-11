@@ -11,7 +11,9 @@ namespace Mini_Pjt_Shopping.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Retailer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,13 +22,19 @@ namespace Mini_Pjt_Shopping.Models
             this.Orders = new HashSet<Order>();
             this.Products = new HashSet<Product>();
         }
-    
+        [DataMember]
         public int Retail_Id { get; set; }
+        [DataMember]
         public string Company_Name { get; set; }
+        [DataMember]
         public string Retail_Name { get; set; }
+        [DataMember]
         public string Retail_Password { get; set; }
+        [DataMember]
         public string Retail_Phone { get; set; }
+        [DataMember]
         public string Retail_Email { get; set; }
+        [DataMember]
         public string Retail_Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -251,5 +251,26 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_ins_order" FunctionName="MiniProject_ShopModel.Store.sp_ins_order" />
+    <EntitySetMapping Name="Compares">
+      <EntityTypeMapping TypeName="MiniProject_ShopModel.Compare">
+        <MappingFragment StoreEntitySet="Compare">
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Compare_Id" ColumnName="Compare_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddToCompare" FunctionName="MiniProject_ShopModel.Store.AddToCompare" />
+    <FunctionImportMapping FunctionImportName="GetComparelist" FunctionName="MiniProject_ShopModel.Store.GetComparelist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MiniProject_ShopModel.GetComparelist_Result">
+          <ScalarProperty Name="Compare_Id" ColumnName="Compare_Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Prod_Id" ColumnName="Prod_Id" />
+          <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
