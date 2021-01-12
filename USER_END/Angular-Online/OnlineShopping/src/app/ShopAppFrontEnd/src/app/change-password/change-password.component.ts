@@ -21,7 +21,7 @@ msg:any;
     this.retailer=new Retailer();
     this.dummy=new Dummy();
     this.dummy1=new Dummy();
- 
+
    }
    Add()
    {
@@ -31,9 +31,9 @@ msg:any;
 
    }
    check(val){
-    this.password=this.cookieservice.get('password');   
+    this.password=this.cookieservice.get('retailpassword');
     if (val.value !== this.password){
-      
+
       return true;
 
     }

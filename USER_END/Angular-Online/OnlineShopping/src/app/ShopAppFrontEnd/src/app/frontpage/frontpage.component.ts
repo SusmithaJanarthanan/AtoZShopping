@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
- import { Router, ActivatedRoute } from '@angular/router';  
+ import { Router, ActivatedRoute } from '@angular/router';
  import { RouterLink, } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { addRetailerervice } from '../services/addretailer.service';
@@ -23,17 +23,17 @@ export class FrontpageComponent implements OnInit {
 
   }
   Delete()
-  { 
+  {
     this.msg=true;
 
   }
   DeleteSure()
   {
     this.retailerservice.DeleteAccount( this.authservice.retailerid).subscribe();
-    this.cookieService.deleteAll();
+    this.cookieService.delete('retailuser');
+    this.cookieService.delete('retailpassword');
     this.router.navigate(['']);
-    
-   
+
   }
   Add_Product()
   {
@@ -55,7 +55,7 @@ export class FrontpageComponent implements OnInit {
   {
     this.router.navigate(['/changePass']);
   }
-  
+
 
   ngOnInit(): void {
   }

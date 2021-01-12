@@ -84,8 +84,8 @@
 
         <div class="form-group">
         <label for="cardnumber" class="required">Card Number</label>
-        <input required #cardnumber="ngModel" type="number" [(ngModel)]="checkout.cardnumber" class="form-control" id="cardnumber"
-        name="cardnumber" placeholder="Enter the Card Number">
+        <input required #cardnumber="ngModel" type="text" [(ngModel)]="checkout.cardnumber" class="form-control" id="cardnumber"
+        name="cardnumber" pattern="[0-9]{16}" placeholder="Enter the Card Number" min="16" max="16">
         <div *ngIf="cardnumber.invalid && (cardnumber.touched || cardnumber.dirty)" class="error">
           Cardnumber is required</div>
         </div>
@@ -136,7 +136,7 @@
         <div class="form-group" style="box-sizing:border-box;width:175px">
         <label for="cvv" class="required">CVV</label>
         <input required #cvv="ngModel" type="password" [(ngModel)]="checkout.cvv" class="form-control" id="cvv"
-        name="cvv" maxlength="3" placeholder="Enter CVV">
+        name="cvv" maxlength="3" pattern="[0-9]{3}" placeholder="Enter CVV">
         <div *ngIf="cvv.invalid && (cvv.touched || cvv.dirty)" class="error">
           CVV is required</div>
         </div>

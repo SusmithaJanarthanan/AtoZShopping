@@ -3,7 +3,6 @@ export class Retailer{
     Company_Name:string;
     Retail_Name:string;
     Retail_Password:string;
-   
     Retail_Phone:number;
     Retail_Email:string;
     Retail_Status:string;

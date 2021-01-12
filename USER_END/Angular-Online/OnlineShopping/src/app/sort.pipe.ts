@@ -22,6 +22,8 @@ export class SortPipe implements PipeTransform {
     }
 
     value.sort((a: any,b: any)=>{
+      console.log(sortfield);
+      console.log(sortdirection);
       if(a[sortfield]<b[sortfield])
       {
         return -1*multiplier;

@@ -53,28 +53,28 @@
 <div class="container">
   <h3 class="h3"> </h3>
   <div class="row">
-    <div class="id" *ngIf="( category| filter:[min,max] |sort:[SortbyParam,SortOrder]|search:name| paginate: { itemsPerPage: 6, currentPage: p } )as result">
+    <div class="id" *ngIf="( category| filter:[min,max] |search:name|sort:[SortbyParam,SortOrder]| paginate: { itemsPerPage: 6, currentPage: p } )as result">
       <div class="col-md-4 col-sm-6" *ngFor="let item of result">
      <!-- {{result.length}} -->
-          <div class="product-grid2" [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}">
+          <div class="product-grid2" [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted' )}">
             <div class="product-image2">
-                <a [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':showDetails(item.Prod_Id)">
-                    <img class="pic-1" src="{{item.Prod_Image}}" style="height:250px;">
-                    <img class="pic-2" src="{{item.Prod_Image}}" style="height:250px;">
+                <a [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted')}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted'  )?'':showDetails(item.Prod_Id)">
+                    <img class="pic-1" src="{{item.Prod_Image}}" style="height:270px;">
+                    <img class="pic-2" src="{{item.Prod_Image}}" style="height:270px;">
                 </a>
                 <ul class="social">
-                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToCompare(item)"  data-tip="Add to Compare"><i class="fa fa-exchange"></i></a></li>
-                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )}"    (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToWishlist(item.Prod_Id)"  data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted'  )}" role="button"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 ||item.Prod_Status==='Deleted')?'':addToCompare(item)"  data-tip="Add to Compare"><i class="fa fa-exchange"></i></a></li>
+                    <li><a  [ngClass]="{imgClass:(item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted'  )}"    (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted' )?'':addToWishlist(item.Prod_Id)"  data-tip="Add to Wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 
                 </ul>
-                <a [ngClass]="{imgClass:item.Prod_Status==='pending'}" class="add-to-cart"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?'':addToCart(item)">{{(item.Prod_Status==='pending'||item.Prod_Quantity<=0 )?"To Be Restocked Soon":"Add to cart"}}</a>
+                <a [ngClass]="{imgClass:item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted' }" class="add-to-cart"  (click)="(item.Prod_Status==='pending'||item.Prod_Quantity<=0||item.Prod_Status==='Deleted' )?'':addToCart(item)">{{(item.Prod_Status==='pending'||item.Prod_Quantity<=0 ||item.Prod_Status==='Deleted')?"Currently Not Available":"Add to cart"}}</a>
               </div>
               <div class="product-content">
                   <h3 class="title">{{item.Prod_Name}}</h3>
                   <span class="price">Rs {{item.Prod_Price}}</span>
                   <br>
-                  <span class="price">{{item.Retail_Name}}</span>
-                  <br>
+
+
                   <span class="price">{{item.Company_Name}}</span>
                   <br>
 

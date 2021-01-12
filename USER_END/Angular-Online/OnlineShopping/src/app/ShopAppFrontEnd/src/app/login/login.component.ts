@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Retailer } from '../models/Retailer.model';
-import { CookieService } from 'ngx-cookie-service'; 
- import { Router, ActivatedRoute } from '@angular/router';  
+import { CookieService } from 'ngx-cookie-service';
+ import { Router, ActivatedRoute } from '@angular/router';
 import { RetailerService } from '../services/Retailer.service';
 import { authService } from '../services/auth.service';
 import { AuthGuardService } from '../services/auth-guard.service';
@@ -19,23 +19,23 @@ msg:any;
 Username="";
 Password="";
 
-  constructor(private authservice:authService,private loginservice:RetailerService, private router: Router, 
-    public activatedRoute: ActivatedRoute, private cookieService: CookieService ,private authguardservice:AuthGuardService) { 
+  constructor(private authservice:authService,private loginservice:RetailerService, private router: Router,
+    public activatedRoute: ActivatedRoute, private cookieService: CookieService ,private authguardservice:AuthGuardService) {
     this.retailer=new Retailer();
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit() {  
-    
+  onSubmit() {
+
       this.loginservice.loginRetailer(this.retailer).subscribe(
         data => {
           this.user = data; // able to print the data
           JSON.stringify(this.user);
           this.processResults()},
-          err=>this.msg = err.error.Message);  
-          
+          err=>this.msg = err.error.Message);
+
     }
 
   processResults() {
@@ -43,8 +43,8 @@ Password="";
       this.authservice.retailerid=this.user.Retail_Id;
       console.log(this.authservice.retailerid);
      console.log(this.user.Retail_Id);
-      this.cookieService.set('username', this.user.Retail_Name);
-      this.cookieService.set('password', this.user.Retail_Password);
+      this.cookieService.set('retailuser', this.user.Retail_Name);
+      this.cookieService.set('retailpassword', this.user.Retail_Password);
       this.cookieService.set('isauthenticated','true');
       this.authservice.isLogged=true;
       this.authguardservice.retailer=this.user;
@@ -59,21 +59,21 @@ Password="";
   }
 
 }
-  
-      
-           
-      
-      
 
-     
-     
-      
-    
-      
-   
-    
-    
-    
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

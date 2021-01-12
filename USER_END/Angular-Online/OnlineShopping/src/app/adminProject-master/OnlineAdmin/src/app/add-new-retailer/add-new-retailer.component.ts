@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Retailer } from '../models/retailer.model';
 import { RetailerService } from '../services/retailer.service';
+
 
 @Component({
   selector: 'app-add-new-retailer',
@@ -9,14 +11,19 @@ import { RetailerService } from '../services/retailer.service';
 })
 export class AddNewRetailerComponent implements OnInit {
 
-  constructor(private retailerService:RetailerService,private router:Router) { }
+  retailer:Retailer;
+
+  constructor(private retailerService:RetailerService,private router:Router)
+  {
+    this.retailer=new Retailer();
+  }
 
   ngOnInit(): void {
   }
 
-  AddRetailer(data){
-    console.log(data);
-    this.retailerService.AddRetailer(data).subscribe((result)=>{
+  AddRetailer(){
+    // console.log(data);
+    this.retailerService.AddRetailer(this.retailer).subscribe((result)=>{
       console.log("result",result)
     });
     alert("added successfully")

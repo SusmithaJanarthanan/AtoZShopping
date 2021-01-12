@@ -45,6 +45,7 @@ import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.compone
 import { ForgetPasswordService } from './services/forgetpassword.service';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { CompareService } from './services/compare.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -73,7 +74,8 @@ import { CompareService } from './services/compare.service';
     SearchPipe,
     CompareComponent,
     ForgetpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    FooterComponent
 
     ],
   imports: [

@@ -37,11 +37,10 @@ msg:string;
     this.categoryservice.getAllCategories().subscribe(
       data => {
         this.category = data; // able to print the data
-       (this.category);
         this.processResults()},
-        err=>this.msg = err.error.Message);  
-        
-       
+        err=>this.msg = err.error.Message);
+
+
          //  let keyss = Object.keys(this.category[0]);
       // console.log(keyss);});
     this.retailerservice.getAllRetailers().subscribe(a=>{

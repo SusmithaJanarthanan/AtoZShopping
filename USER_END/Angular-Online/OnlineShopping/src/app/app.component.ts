@@ -48,7 +48,9 @@ ngAfterViewInit(): void {
 }
 logout(): void {
   this.router.navigate(['/Home']);
-  this.cookieservice.deleteAll();
+  this.cookieservice.delete('userid');
+  this.cookieservice.delete('username');
+  this.cookieservice.delete('password');
   this.authservice.isLogged=false;
   window.location.reload();
 }

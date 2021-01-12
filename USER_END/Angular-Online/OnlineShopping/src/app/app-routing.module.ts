@@ -33,7 +33,7 @@ const routes: Routes = [
   {path:"thankyou",component:ThankyouComponent,canActivate: [AuthGuardService]},
   {path:"Orders/:id",component:OrdersComponent,canActivate: [AuthGuardService]},
   {path:"MyProfile/:id",component:MyprofileComponent,canActivate: [AuthGuardService]},
-  {path:"Compare/:id",component:CompareComponent},
+  {path:"Compare/:id",component:CompareComponent,canActivate: [AuthGuardService]},
   {path:"forgetpassword",component:ForgetpasswordComponent},
   {path:"ResetPassword",component:ResetpasswordComponent},
 

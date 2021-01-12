@@ -11,7 +11,7 @@ import { authService } from '../services/auth.service';
 export class NameheaderComponent implements OnInit {
 name:string;
   constructor(private cookieService: CookieService,private router:Router,private authService:authService) {
-    this.name=this.cookieService.get('username');
+    this.name=this.cookieService.get('retailuser');
 
   console.log(this.name);
 
@@ -21,9 +21,11 @@ name:string;
   }
   logout(): void {
     this.router.navigate(['']);
-    this.cookieService.deleteAll();
+    this.cookieService.delete('retailuser');
+    this.cookieService.delete('retailpassword');
+    this.cookieService.delete('isauthenticated');
     this.authService.isLogged=false;
-    
+
   }
 
 }
