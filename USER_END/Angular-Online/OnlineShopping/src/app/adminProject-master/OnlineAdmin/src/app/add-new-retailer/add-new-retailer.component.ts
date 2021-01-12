@@ -12,6 +12,8 @@ import { RetailerService } from '../services/retailer.service';
 export class AddNewRetailerComponent implements OnInit {
 
   retailer:Retailer;
+  retail:any;
+  msg:any;
 
   constructor(private retailerService:RetailerService,private router:Router)
   {
@@ -24,11 +26,21 @@ export class AddNewRetailerComponent implements OnInit {
   AddRetailer(){
     // console.log(data);
     this.retailerService.AddRetailer(this.retailer).subscribe((result)=>{
-      console.log("result",result)
-    });
-    alert("added successfully")
+      this.retail = result;
+      // this.msg=undefined;
+      console.log(this.retail);
+      alert('Added Successfully')},
+      err=>{this.msg = err.error.Message,
+       alert(this.msg)});
+
+      // console.log("result",result);
+      // err=>this.msg = err.error.Message;
+      // alert(this.msg);
+
+    // alert("added successfully")
     this.router.navigate(['/retails']);
   }
+
 
   goBack(){
     this.router.navigate(["../retails"])

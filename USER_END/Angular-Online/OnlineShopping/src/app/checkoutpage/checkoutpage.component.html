@@ -165,10 +165,12 @@
         </span>
       </h4>
       <div *ngFor="let item of order">
-      <p><a >{{item.Prod_Name}}</a> <span class="price">{{item.Prod_Price}}</span></p>
-      <p> Tax   &nbsp;&nbsp; &nbsp;{{total1*1.05-total1}}</p>
+      <p><a >{{item.Prod_Name}}</a>   &nbsp;   <span class="price">{{item.Prod_Price}}</span></p>
+      <p>  Quantity   &nbsp;&nbsp;{{item.Prod_Quantity}} </p>
       <hr>
       </div>
+      <p> Tax  &nbsp; &nbsp;&nbsp; &nbsp;{{total1*1.05-total1}}</p>
+      <hr>
       <p>Total: <span class="price" style="color:black"><b> {{total1*1.05}}</b></span></p>
     </div>
   </div>

@@ -218,7 +218,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Update_Pr__Prod___3F466844">
+  <Association Name="FK__Update_Pr__Prod___76969D2E">
     <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
     <End Role="Update_Products" Type="Self.Update_Products" Multiplicity="*" />
     <ReferentialConstraint>
@@ -230,7 +230,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Update_Pr__Retai__403A8C7D">
+  <Association Name="FK__Update_Pr__Retai__778AC167">
     <End Role="Retailers" Type="Self.Retailers" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
     </End>
@@ -324,6 +324,9 @@
   <Function Name="sp_getOrdersfromCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userid" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_getOrdersfromCart1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
   <Function Name="sp_ins_order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
@@ -383,11 +386,11 @@
       <End Role="Retailers" EntitySet="Retailers" />
       <End Role="Products" EntitySet="Products" />
     </AssociationSet>
-    <AssociationSet Name="FK__Update_Pr__Prod___3F466844" Association="Self.FK__Update_Pr__Prod___3F466844">
+    <AssociationSet Name="FK__Update_Pr__Prod___76969D2E" Association="Self.FK__Update_Pr__Prod___76969D2E">
       <End Role="Products" EntitySet="Products" />
       <End Role="Update_Products" EntitySet="Update_Products" />
     </AssociationSet>
-    <AssociationSet Name="FK__Update_Pr__Retai__403A8C7D" Association="Self.FK__Update_Pr__Retai__403A8C7D">
+    <AssociationSet Name="FK__Update_Pr__Retai__778AC167" Association="Self.FK__Update_Pr__Retai__778AC167">
       <End Role="Retailers" EntitySet="Retailers" />
       <End Role="Update_Products" EntitySet="Update_Products" />
     </AssociationSet>

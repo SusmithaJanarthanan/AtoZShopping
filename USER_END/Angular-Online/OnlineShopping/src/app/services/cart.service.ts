@@ -29,7 +29,7 @@ export class CartService
     }
     public decQty(id:number)
     {
-        return this.getHttp.put("http://localhost:61535/api/Cart/Inc/"+id,2);
+        return this.getHttp.put("http://localhost:61535/api/Cart/Inc/"+id,-1);
     }
 
     public calTotal(id:number)

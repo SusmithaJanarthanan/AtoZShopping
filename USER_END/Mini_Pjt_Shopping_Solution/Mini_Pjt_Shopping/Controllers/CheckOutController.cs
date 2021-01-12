@@ -20,10 +20,10 @@ namespace Mini_Pjt_Shopping.Controllers
         public HttpResponseMessage GetOrdersfromCart(int id)
         {
             List<Order> order = new List<Order>();
-            var res = entities.sp_getOrdersfromCart(id).ToList();
+            var res = entities.sp_getOrdersfromCart1(id).ToList();
             foreach (var item in res.ToList())
             {
-                order.Add(new Order { Prod_Name = item.Prod_Name, Prod_Price = item.Prod_Price });
+                order.Add(new Order { Prod_Name = item.Prod_Name, Prod_Price = item.Prod_Price,Prod_Quantity=item.Prod_Quantity });
             }
             return Request.CreateResponse(HttpStatusCode.OK, order);
         }

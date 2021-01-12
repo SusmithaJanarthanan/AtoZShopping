@@ -300,5 +300,15 @@
     <FunctionImportMapping FunctionImportName="decQty" FunctionName="Final_Shopping_dbModel.Store.decQty" />
     <FunctionImportMapping FunctionImportName="incQty" FunctionName="Final_Shopping_dbModel.Store.incQty" />
     <FunctionImportMapping FunctionImportName="sp_ins_order" FunctionName="Final_Shopping_dbModel.Store.sp_ins_order" />
+    <FunctionImportMapping FunctionImportName="sp_getOrdersfromCart1" FunctionName="Final_Shopping_dbModel.Store.sp_getOrdersfromCart1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Final_Shopping_dbModel.sp_getOrdersfromCart1_Result">
+          <ScalarProperty Name="Prod_Name" ColumnName="Prod_Name" />
+          <ScalarProperty Name="Prod_Price" ColumnName="Prod_Price" />
+          <ScalarProperty Name="Cart_Id" ColumnName="Cart_Id" />
+          <ScalarProperty Name="Prod_Quantity" ColumnName="Prod_Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -93,8 +93,8 @@ addToCart(item:any)
     this.cart.Prod_Id=item.Prod_Id;
     this.cart.Prod_Price=item.Prod_Price;
     this.cart.Prod_Quantity=item.Prod_Quantity;
+    
     this.cartservice.addToCart(this.cart).subscribe(data=>alert(data));
-
   }
 }
 

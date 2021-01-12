@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CartService } from '../services/cart.service';
+import { PdtService } from '../services/pdts.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,8 +18,9 @@ export class CartComponent implements OnInit {
 id1:any;
   val?:any;
   cartTotal:number=0;
+  msg:any;
 
-  constructor(private cartService:CartService,private myRoute:ActivatedRoute,private route:Router,private cookieservice:CookieService)
+  constructor(private cartService:CartService,private myRoute:ActivatedRoute,private route:Router,private cookieservice:CookieService,private pdtservice:PdtService)
    {
     //this.guestForm=this.form.group({
   //   quantity: ['test', [ Validators.min(1)]]
@@ -46,11 +48,18 @@ id1:any;
 
 changeQty(id:number ,q:number)
 {
-if(q==1)
+if(q!=-1)
 {
-  this.cartService.incQty(id,q).subscribe(data=>console.log(data));
-  // alert("hiii")
-  window.location.reload();
+  this.cartService.incQty(id,q).subscribe(data=>{console.log(data),
+  alert(data),
+  this.msg=data}
+    // err=>this.msg = err.error.Message
+    );
+    if(this.msg)
+    {
+      alert(this.msg);
+    }
+    window.location.reload();
 }
 else
 {
@@ -75,10 +84,7 @@ else
   }
   ngOnInit(): void {
 
-    //this.cart.forEach((item : any) => {
-    //  this.cartTotal +=(item.Prod_Quantity * item.Prod_Price)
-
-    //});
+   
 
   }
 

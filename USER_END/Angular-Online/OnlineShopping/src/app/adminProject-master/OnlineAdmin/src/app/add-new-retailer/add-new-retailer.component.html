@@ -98,13 +98,15 @@
 
         <label>Retail Status</label>
 
-        <select class="form-control" placeholder="Retail Status" id="RetailStatus" name="RetailStatus" [(ngModel)]="retailer.Retail_Status" #RetailStatus="ngModel" >
+        <select class="form-control" placeholder="Retail Status" id="RetailStatus" name="RetailStatus" [(ngModel)]="retailer.Retail_Status" #RetailStatus="ngModel" required >
             <option value="approved">approved</option>
             <option value="pending">pending</option></select>
 
        <button type="submit" class="btn btn-success" [disabled]="!retailerPost.form.valid">  Submit  </button>
 
-
+       <div *ngIf="msg"   class="alert alert-danger">
+        {{msg}}
+      </div>
 
 </form>
 </div>

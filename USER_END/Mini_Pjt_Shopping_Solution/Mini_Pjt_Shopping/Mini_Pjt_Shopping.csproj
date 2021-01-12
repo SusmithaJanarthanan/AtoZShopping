@@ -186,6 +186,9 @@
     <Compile Include="Models\sp_GetOnePdtfromdb_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getOrdersfromCart1_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_getOrdersfromCart_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>

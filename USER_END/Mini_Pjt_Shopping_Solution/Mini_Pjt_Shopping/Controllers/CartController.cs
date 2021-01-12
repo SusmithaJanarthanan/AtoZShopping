@@ -35,6 +35,8 @@ namespace Mini_Pjt_Shopping.Controllers
         {
             List<Cart> cartlist = new List<Cart>();
             var res = entities.GetCartItems(cart.User_Id).ToList();
+            Product pdt = entities.Products.Where(i => i.Prod_Id == cart.Prod_Id).FirstOrDefault();
+            Nullable<int> qty = pdt.Prod_Quantity;
             foreach (var item in res)
             {
                 cartlist.Add(new Cart { User_Id = item.User_Id, Prod_Id = item.Prod_Id });
@@ -42,9 +44,17 @@ namespace Mini_Pjt_Shopping.Controllers
             Cart cart1 = entities.Carts.Where(w => w.User_Id == cart.User_Id && w.Prod_Id == cart.Prod_Id).FirstOrDefault();
             if (cart1 != null)
             {
-                entities.Carts.Where(w => w.User_Id == cart.User_Id && w.Prod_Id == cart.Prod_Id).FirstOrDefault().Prod_Quantity += 1;
-                entities.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "Quantity updated in cart");
+                if(qty>cart1.Prod_Quantity)
+                {
+                    entities.Carts.Where(w => w.User_Id == cart.User_Id && w.Prod_Id == cart.Prod_Id).FirstOrDefault().Prod_Quantity += 1;
+                    entities.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, "Quantity updated in cart");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Stock Limit Reached");
+                }
+               
             }
             else
             {
@@ -58,9 +68,7 @@ namespace Mini_Pjt_Shopping.Controllers
         [HttpDelete]
         public HttpResponseMessage DelCartItem(int id)
         {
-
-
-            Cart item = entities.Carts.Find(id);
+                        Cart item = entities.Carts.Find(id);
             if (item != null)
             {
                 entities.Carts.Remove(item);
@@ -74,11 +82,19 @@ namespace Mini_Pjt_Shopping.Controllers
         [HttpPut]
         public HttpResponseMessage IncQty(int id, [FromBody] int inc)
         {
-            if (inc == 1)
+            Cart cat = entities.Carts.Where(i => i.Cart_Id == id).FirstOrDefault();
+            Product pdt = entities.Products.Where(i => i.Prod_Id == cat.Prod_Id).FirstOrDefault();
+            Nullable<int> qty = pdt.Prod_Quantity;
+            if (inc !=-1)
             {
-
-                entities.incQty(id);
-                entities.SaveChanges();
+                if (qty > inc){
+                    entities.incQty(id);
+                    entities.SaveChanges();
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, "Stock Limit Reached");
+                }
             }
             else
             {

@@ -427,6 +427,9 @@
     <FunctionImport Name="sp_ins_order">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_getOrdersfromCart1" ReturnType="Collection(Final_Shopping_dbModel.sp_getOrdersfromCart1_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCart_Result">
     <Property Type="Int32" Name="Cart_Id" Nullable="false" />
@@ -558,5 +561,11 @@
     <Property Type="String" Name="Retail_Name" Nullable="true" MaxLength="40" />
     <Property Type="String" Name="Company_Name" Nullable="true" MaxLength="40" />
     <Property Type="Int64" Name="row_num" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_getOrdersfromCart1_Result">
+    <Property Type="String" Name="Prod_Name" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Prod_Price" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Int32" Name="Cart_Id" Nullable="false" />
+    <Property Type="Int32" Name="Prod_Quantity" Nullable="true" />
   </ComplexType>
 </Schema>

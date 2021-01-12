@@ -241,5 +241,14 @@ namespace Mini_Pjt_Shopping.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ins_order", idParameter);
         }
+    
+        public virtual ObjectResult<sp_getOrdersfromCart1_Result> sp_getOrdersfromCart1(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getOrdersfromCart1_Result>("sp_getOrdersfromCart1", useridParameter);
+        }
     }
 }
