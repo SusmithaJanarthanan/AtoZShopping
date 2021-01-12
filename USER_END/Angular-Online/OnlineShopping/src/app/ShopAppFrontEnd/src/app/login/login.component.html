@@ -1,5 +1,5 @@
 <div class="head">
-<h3 style="text-align: center;">A-Z Store</h3>
+<h3 style="text-align: center;">Go Shoppy</h3>
 </div>
 <div class="header">
   <br>
@@ -7,7 +7,7 @@
 <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
    <div class="form-group">
        <label for="name" style="color:azure;" >Enter E-Mail</label>
-       <input type="text" name="name" id="name" class="form-control" required 
+       <input type="text" name="name" id="name" class="form-control" required
        [(ngModel)]="retailer.Retail_Email" #name="ngModel">
        <div [hidden]="name.valid || name.untouched"
             class="alert alert-danger">
@@ -28,14 +28,14 @@
    <br>
    <br>
 
-   <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">  Login  </button> 
+   <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">  Login  </button>
     &nbsp;
     &nbsp;
     &nbsp;
 
-   <button class="btn btn-success" (click)="Sign_Up()">  Sign-Up  </button> 
+   <button class="btn btn-success" (click)="Sign_Up()">  Sign-Up  </button>
 
-  
+
 
 
 
